@@ -1,0 +1,22 @@
+<h1>Listing syntheses</h1>
+
+<table>
+  <tr>
+    <th>Gene code</th>
+    <th>Researcher</th>
+  </tr>
+
+<% for synthesis in @syntheses %>
+  <tr>
+    <td><%=h synthesis.gene_code %></td>
+    <td><%=h synthesis.researcher %></td>
+    <td><%= link_to 'Show', synthesis %></td>
+    <td><%= link_to 'Edit', edit_synthesis_path(synthesis) %></td>
+    <td><%= link_to 'Destroy', synthesis, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New synthesis', new_synthesis_path %>

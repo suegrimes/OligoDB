@@ -1,0 +1,24 @@
+
+<p>
+  <b>Oligo Name:</b>
+  <%=h @oligo_order.oligo_name %>
+</p>
+
+<table>
+  <tr>
+    <th> Oligo Order </th>
+    <th> Plate Number  </th>
+	<th> Well Number  </th>
+	<th> Initial volume </th>
+  </tr>
+
+<tr>
+    <td><%=h @oligo_order.order_hdr %></td>
+    <td><%=h @oligo_order.synth_plate_nr %></td>
+	<td><%=h @oligo_order.synth_well_nr %></td>
+	<td><%=h @oligo_order.synth_initial_volume %></td>
+</tr>
+</table>
+
+<br />
+<%= link_to 'Back', oligo_orders_path %> </p>

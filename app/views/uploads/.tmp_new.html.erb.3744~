@@ -1,0 +1,18 @@
+<h3><%=h @filetype %> file upload</h3>
+
+<div style='color:green'> <%= flash[:notice]%></div>
+
+<% upload_form_for(@upload, :action=> 'create') do |f| %>  
+  <%= error_messages_for :upload %>
+
+  <table>
+    <tr><%= f.hidden_field :content_type, :value=> @filetype %></tr>
+	<tr>Select a new file to upload:</tr>
+	<tr>
+	  <td><%= f.upload_column_field :upload_file, :size=>30%> </td>
+	  <td><%= f.submit "Upload File" %></td> 
+	</tr>
+  </table>
+
+<% end %>
+

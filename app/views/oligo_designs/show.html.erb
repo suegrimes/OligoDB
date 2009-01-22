@@ -1,0 +1,12 @@
+
+<p>
+  <b>Oligo Name:</b>  <%=h @oligo_design.oligo_name %>
+</p>
+<p>
+	<b>Amplicon start:</b> <%=h @oligo_design.amplicon_chr_start_pos %>
+	<b>Amplicon end:</b>   <%=h @oligo_design.amplicon_chr_end_pos%>
+<p>
+  <b>Sequence:</b> <%=h @oligo_design.selector_useq %>
+</p>
+
+<%= link_to 'Back', oligo_designs_path %> 

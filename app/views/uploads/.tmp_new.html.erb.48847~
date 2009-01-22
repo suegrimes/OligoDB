@@ -1,0 +1,23 @@
+<h3>File upload</h3>
+
+<div style='color:green'> <%= flash[:notice]%></div>
+
+<% upload_form_for(@upload, :action=> 'create') do |f| %>  
+  <%= error_messages_for :upload %>
+
+  <table>
+    <tr>
+        <% @upload.content_type = 'selector'%>
+        <td><%= f.radio_button :content_type, "selector"%><b>Selector File</b></td>
+        <td width=20></td>
+        <td><%= f.radio_button :content_type, "oligo order"%><b>Oligo Order File</b</td>
+    </tr>
+</table>
+
+    <p>Please select a file (choose your file with the Browse button)</p>
+    <%= f.upload_column_field :upload_file, :size=>30%>
+
+    <p><%= f.submit "Submit File" %></p>
+<% end %>
+
+<%= link_to 'List files', uploads_path %>

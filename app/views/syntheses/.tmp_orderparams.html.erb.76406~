@@ -1,0 +1,23 @@
+<% form_tag :action => "create" do %>
+<table>
+  <tr>
+	<td>
+		<b>Researcher:</b> <%= text_field_tag(:researcher, @researcher, :size => 25, :readonly => true) %>
+	</td>
+	<td>
+	    <b>Gene code:</b>  <%= text_field_tag(:gene, @gene, :size => 8, :readonly => true) %>
+	</td>
+  </tr>
+<% for oligo in @oligos %>
+  <tr>
+    <td><%= text_field_tag("oligo[][oligo_name]", oligo.oligo_name,
+                               :size => 25, :readonly => true) %></td>
+	<td><%= text_field_tag("oligo[][selector_useq]", oligo.selector_useq, 
+                               :size => 80, :readonly => true) %></td>
+  </tr>
+  <% end %>
+  <tr><%= submit_tag "Confirm oligo order"%></tr>
+<% end %>
+</table>
+
+<%= link_to 'Back', syntheses_path %>

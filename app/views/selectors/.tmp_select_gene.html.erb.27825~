@@ -1,0 +1,7 @@
+<h1>Select gene</h1>
+
+<% form_tag :action=> 'list_selected' do %>
+<p>Gene:  <%= text_field_tag :gene, 'AKT1' %> </p>
+
+<%= submit_tag "Submit" %>
+<%end%>

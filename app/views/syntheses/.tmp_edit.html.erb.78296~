@@ -1,0 +1,22 @@
+<h1>Editing synthesis</h1>
+
+<div style='color:green'> <%= flash[:notice]%></div>
+
+<% form_for(@synthesis) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :gene_code %><br />
+    <%= f.text_field :gene_code %>
+  </p>
+  <p>
+    <%= f.label :researcher %><br />
+    <%= f.text_field :researcher %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @synthesis %> |
+<%= link_to 'Back', syntheses_path %>

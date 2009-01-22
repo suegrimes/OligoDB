@@ -1,0 +1,22 @@
+<h1>New oligo_plate</h1>
+<div style='color:green'> <%= flash[:notice]%></div>
+
+<% form_for(@oligo_plate) do |f| %>
+  <%= f.error_messages %>
+  
+  <p> Source Plate <br />
+    <%= text_field (:oligo_plate, :source_plate, :value => @source_plate) %>
+  </p>
+  <p> Destination Plate <br />
+    <%= text_field (:oligo_plate, :dest_plate, :value => "plate_") %>
+  </p>
+  <p>
+    <%= f.label "Pipet volume:" %><br />
+    <%= f.text_field :well_initial_volume %>
+  </p>
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', oligo_plates_path %>

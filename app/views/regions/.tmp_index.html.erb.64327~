@@ -1,0 +1,26 @@
+<h1>Listing regions</h1>
+
+<table>
+  <tr>
+  <th> Gene </th>
+  <th> ROI # </th>
+  <th> Chr start </th>
+  <th> Chr end   </th>
+  <th> Strand   </th>
+  </tr>
+
+<% for region in @regions %>
+  <tr>
+  	<td><%=h region.gene_code %></td> 
+	<td><%=h region.roi_nr %></td>
+	<td><%=h region.roi_start_chr_pos %></td>
+	<td><%=h region.roi_end_chr_pos %></td>
+	<td><%=h region.roi_strand %></td>
+    <td><%= link_to 'Show', region %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New region', new_region_path %>

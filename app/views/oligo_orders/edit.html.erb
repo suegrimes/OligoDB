@@ -1,0 +1,16 @@
+<h1>Editing oligo_order</h1>
+
+<% form_for(@oligo_order) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @oligo_order %> |
+<%= link_to 'Back', oligo_orders_path %>

@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+        <title>SGTC Oligo DB <%= controller.action_name %></title>
+        <%= stylesheet_link_tag 'sgtc_std' %>
+        <%= javascript_include_tag :defaults %>
+    </head>
+
+<body id='body'>
+	
+<div id="header">
+	<img src="/images/sutech_reflect_DB.gif" alt="SGTC Sequencing Database" width="120" height="103" title="SGTC Sequencing Database" />
+
+	<h1>SGTC Oligo Database</h1>
+</div>
+
+<div id="container">
+	<div class="leftsidebar">
+	<p><%= link_to 'Home', selectors_path %></p>
+	<p><%= link_to 'Load Selectors', uploadfile_url %></p>
+	<p><%= link_to 'Order Oligos', new_synthesis_path %></p>
+	<p>Create Plates</p>
+	<p><%= link_to 'Manage Inventory', inventoryquery_url %></p>
+	<p><%= link_to 'Query Oligos', selectorquery_url %></p>
+
+	<p>Logout</p>
+	</div>
+
+	<div class="maincontent">
+	<%= yield %>
+	</div>
+	
+</div> 
+
+
+<div id="footer">
+	<p class="lft"><a href="http://med.stanford.edu/sgtc/">Stanford Genome Technology Center</a> | <a href="mailto:insert_contact_name@stanford.edu">Contact</a> |</p>
+
+</div>
+
+
+</body>
+</html>
+
+

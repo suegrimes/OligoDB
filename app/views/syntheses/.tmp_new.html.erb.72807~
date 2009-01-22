@@ -1,0 +1,19 @@
+k<h2>New synthesis order</h2>
+
+<% form_for(@synthesis) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :researcher %><br />
+    <%= f.text_field :researcher %>
+  </p>
+  <p>
+    <%= f.label 'gene for this order' %><br />
+    <%= f.text_field :gene_code %>
+  </p>
+  <p>
+    <%= f.submit "GetOligos" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', syntheses_path %>

@@ -1,0 +1,23 @@
+<h1>Select pool parameters </h1>
+<div style='color:green'> <%= flash[:notice]%></div>
+
+<% form_tag :action => 'setgenevol' do %>
+<p>Enzyme:  <%= collection_select(:pool_params, :enzyme, @enzymes, :enzyme_code, :enzyme_code,
+                                  {},{:size => 3, :multiple => :multiple}) %> </p>
+<table>
+  <tr>
+	<th>Destination Plate</th>
+	<th>Well Number</th>
+	<th>Default vol to pipet</th>
+	<th>Max vol per well</th>
+  </tr>
+  <tr>
+  	<td><%= text_field_tag :dest_plate, "Pool_1234" %></td>
+	<td><%= text_field_tag :well_number, "B12" %></td>
+	<td><%= text_field_tag :default_vol, 15 %></td>
+	<td><%= text_field_tag :max_vol_well, 200 %></td>
+  </tr>
+</table>
+<p><%= submit_tag "Submit" %></p>
+</form>
+<%end%>

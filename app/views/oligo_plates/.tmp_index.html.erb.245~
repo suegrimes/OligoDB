@@ -1,0 +1,24 @@
+<h1>Listing oligo_plates</h1>
+
+<table>
+  <tr>
+    <th>Oligo plate nr</th>
+	<th>Oligo well nr</th>
+	<th>Oligo name </th>
+	<th>Order number </th>
+  </tr>
+
+<% for oligo_plate in @oligo_plates %>
+  <tr>
+    <td><%=h oligo_plate.oligo_plate_nr %></td>
+	<td><%=h oligo_plate.oligo_well_nr %></td>
+	<td><%=h oligo_plate.oligo_name %></td>
+	<td><%=h oligo_plate.oligo_order.order_hdr %></td>
+    <td><%= link_to 'Show', oligo_plate %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New oligo_plate', new_oligo_plate_path %>

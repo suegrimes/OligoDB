@@ -1,0 +1,18 @@
+<p>
+  <b>Researcher name:</b>
+  <%=h @researcher.researcher_name %>
+</p>
+
+<p>
+  <b>Phone number:</b>
+  <%=h @researcher.phone_number %>
+</p>
+
+<p>
+  <b>Company:</b>
+  <%=h @researcher.company %>
+</p>
+
+
+<%= link_to 'Edit', edit_researcher_path(@researcher) %> |
+<%= link_to 'Back', researchers_path %>

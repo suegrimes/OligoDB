@@ -1,0 +1,23 @@
+<h2>New oligo synthesis order</h2>
+
+<div style='color:green'> <%= flash[:notice]%></div>
+
+<% form_for(@synthesis, :url => {:action => 'orderparams'}) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :researcher %><br />
+    <%= f.collection_select (:researcher, @rnames, :researcher_name, :researcher_name, {},
+              {:size => 2, :multiple => :multiple}) %>
+  </p>
+  <p>
+    <%= f.label 'Synthesize oligos for gene(s):' %><br />
+	<%= f.collection_select(:gene, @genes, :gene_code, :gene_code, {},
+              {:size => 3, :multiple => :multiple}) %> 
+  </p>
+  <p>
+    <%= f.submit "GetOligos" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', syntheses_path %>

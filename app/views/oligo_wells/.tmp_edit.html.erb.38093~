@@ -1,0 +1,12 @@
+<h1>Editing oligo_well</h1>
+
+<% form_for(@oligo_well) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @oligo_well %> |
+<%= link_to 'Back', oligo_wells_path %>

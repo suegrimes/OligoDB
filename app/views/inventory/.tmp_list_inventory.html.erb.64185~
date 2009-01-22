@@ -1,0 +1,29 @@
+<h1>Oligo Inventory</h1>
+<div style='color:green'> <%= flash[:notice]%></div>
+
+<table>
+  <tr>
+	<th> Oligo name  </th>
+    <th> Plate Number  </th>
+	<th> Well Number </th>
+	<th> Initial Volume </th>
+	<th> Remaining Volume </th>
+  </tr>
+
+<% for oligo in @oligos %>
+	<% for well in oligo.oligo_wells %>
+	<tr>
+	  <td><%=h oligo.oligo_name %></td>
+	  <td><%=h well.oligo_plate_nr%></td>
+	  <td><%=h well.oligo_well_nr%></td>
+	  <td><%=h well.well_initial_volume%></td>
+	  <td><%=h well.well_rem_volume%></td>
+    </tr>
+    <% end %>
+  <% end %>
+</table>
+
+<br />
+<td><%= link_to 'Back', :back %></td>
+
+

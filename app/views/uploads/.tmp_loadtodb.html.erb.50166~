@@ -1,0 +1,8 @@
+<p>
+  <b>file successfully loaded</b>
+</p>
+
+<%= params.inspect%><br>
+<%= @sel_file %>hodfgjkdf<br>
+
+<%= link_to 'Back', selectors_path %>

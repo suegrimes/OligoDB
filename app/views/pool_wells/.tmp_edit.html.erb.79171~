@@ -1,0 +1,12 @@
+<h1>Editing pool_well</h1>
+
+<% form_for(@pool_well) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @pool_well %> |
+<%= link_to 'Back', pool_wells_path %>

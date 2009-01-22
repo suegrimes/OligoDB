@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  pool_plate_nr: MyString
+  pool_well_nr: MyString
+
+two:
+  pool_plate_nr: MyString
+  pool_well_nr: MyString

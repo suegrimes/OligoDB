@@ -1,0 +1,11 @@
+<h1>Select gene/enzyme to inventory </h1>
+<div style='color:green'> <%= flash[:notice]%></div>
+
+<% form_tag :action => 'list_inventory' do %>
+<p>Gene:    <%= collection_select(:selector, :gene, @genes, :gene_code, :gene_code) %> </p>
+<p>Enzyme:  <%= collection_select(:selector, :enzyme, @enzymes, :enzyme_code, :enzyme_code) %> </p>
+
+<%= submit_tag "Submit" %>
+</form>
+<%end%>
+

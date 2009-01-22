@@ -1,0 +1,4 @@
+<p> Selector file loaded </p>
+<div style='color:green'> <%= flash[:notice]%></div>
+
+<%= link_to 'List selectors', selectors_url %>

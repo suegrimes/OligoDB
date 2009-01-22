@@ -1,0 +1,15 @@
+<h1>New oligo_plate</h1>
+
+<% form_for(@oligo_plate) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :oligo_plate_nr %><br />
+    <%= f.text_field :oligo_plate_nr %>
+  </p>
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', oligo_plates_path %>

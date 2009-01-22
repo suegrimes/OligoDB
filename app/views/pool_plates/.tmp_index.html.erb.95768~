@@ -1,0 +1,27 @@
+<h1>Listing pool_plates</h1>
+<div style='color:green'> <%= flash[:notice]%></div>
+
+<table>
+  <tr>
+    <th>Pool plate nr</th>
+    <th>Pool well nr</th>
+	<th>Enzyme</th>
+    <th>Volume</th>
+  </tr>
+
+<% for pool_plate in @pool_plates %>
+  <tr>
+    <td><%=h pool_plate.pool_plate_nr %></td>
+    <td><%=h pool_plate.pool_well_nr %></td>
+	<td><%=h pool_plate.enzyme_code %></td>
+    <td><%=h pool_plate.pool_volume %></td>
+    <td><%= link_to 'Show', pool_plate %></td>
+    <td><%= link_to 'Edit', edit_pool_plate_path(pool_plate) %></td>
+    <td><%= link_to 'Destroy', pool_plate, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New pool_plate', new_pool_plate_path %>

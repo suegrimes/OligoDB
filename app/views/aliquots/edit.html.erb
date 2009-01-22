@@ -1,0 +1,20 @@
+<h1>Editing aliquot</h1>
+
+<% form_for(@aliquot) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :plate_from %><br />
+    <%= f.text_field :plate_from %>
+  </p>
+  <p>
+    <%= f.label :plate_to %><br />
+    <%= f.text_field :plate_to %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @aliquot %> |
+<%= link_to 'Back', aliquots_path %>

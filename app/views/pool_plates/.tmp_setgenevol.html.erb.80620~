@@ -1,0 +1,25 @@
+<h1>Pool Plates - parameters</h1>
+<div style='color:green'> <%= flash[:notice]%></div>
+
+<table>
+  <tr>
+  	<th>Oligo Name</th>
+    <th>Gene</th>
+	<th>Plate Number</th>
+	<th>Remaining Vol</th>
+	<th>Volume to pipet</th>
+  </tr>
+  <% form_tag :action => "new" do %>
+  <% for gene in @genes %>
+  <tr>
+	<td><%= text_field_tag("gene[][oligo_name]", gene.oligo_name) %></td>
+	<td><%= text_field_tag("gene[][gene_code]", gene.oligo_order.gene_code) %></td>
+	<td><%= text_field_tag("gene[][plate_nr]", gene.oligo_plate_nr) %></td>
+	<td><%= text_field_tag("gene[][rem_vol]", gene.well_rem_volume) %></td>
+	<td><%= text_field_tag("gene[][volume]", @default_vol) %></td>
+  </tr>
+  <% end %>
+  <tr><%= submit_tag "Submit parameters"%></tr>
+<% end %>
+
+</table>

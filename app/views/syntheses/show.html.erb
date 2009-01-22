@@ -1,0 +1,16 @@
+<% debug(params)%>
+
+<p>
+  <b>Oligo Name:</b>
+  <%=h @synthesis.oligo_name %>
+</p>
+
+<p>
+  <b>Sequence:</b>
+  <%=h @synthesis.selector_useq %>
+</p>
+
+
+<%= link_to 'Edit', edit_synthesis_path(@synthesis) %> |
+<%= link_to 'Back', synthesis_path %>
+

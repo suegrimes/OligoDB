@@ -1,0 +1,15 @@
+<h1>Selector Files</h1>
+<%= @uploads %>hodfgjkdf<br>
+
+<table>	
+ <% for upload in @uploads %>
+ 	<tr>
+ 		<td><%= upload.upload_file%></td>
+ 		<td><%= link_to 'load to DB', :controller=>'selectors', :action=>'upload_file',
+                                      :id=>upload.id%></td>
+ 	</tr> 
+ <%end%>
+</table>
+
+<br />
+<%= link_to 'New upload', new_upload_path %>

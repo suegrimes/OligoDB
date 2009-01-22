@@ -1,0 +1,6 @@
+<p><%= @save_cnt %> records for <%= @filetype %> file loaded </p>
+<p><%= @reject_cnt %> records rejected as non-unique </p>
+<div style='color:green'> <%= flash[:notice]%></div>
+
+<%= link_to 'List oligo designs', oligo_designs_url %>
+<%= link_to 'List oligo plates', oligo_plates_url %>

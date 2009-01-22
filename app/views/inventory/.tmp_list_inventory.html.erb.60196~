@@ -1,0 +1,25 @@
+<h1>Oligo Inventory</h1>
+<table>
+  <tr>
+    <th> Oligo Name </th>
+    <th> Plate Number  </th>
+	<th> Well Number </th>
+	<th> Initial Volume </th>
+	<th> Remaining Volume </th>
+  </tr>
+
+<% for plate in @plates %>
+  <tr>
+    <td><%=h plate.oligo_name %></td>
+    <td><%=h plate.oligo_plate_nr %></td>
+	<td><%=h plate.oligo_well_nr %></td>
+	<td><%=h plate.well_initial_volume %></td>
+	<td><%=h plate.well_rem_volume %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<td><%= link_to :back %></td>
+
+
