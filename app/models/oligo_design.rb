@@ -17,25 +17,24 @@ class OligoDesign < ActiveRecord::Base
   
   def self.loaddesigns(design_file)
    file_path = "#{RAILS_ROOT}/public#{design_file}"
-   #file_path = "#{RAILS_ROOT}/public/upload_file/combined_selectors.txt"
    
    #initialize save and reject counters
    @save_cnt = 0
    @reject_cnt = 0
    
    FasterCSV.foreach(file_path, {:headers => :first_row, :col_sep => "\t"}) do |row|
-   #create oligo array, splitting fields by '_'
-   oligo = row[18].split(/_/) 
+     #create oligo array, splitting oligo name fields by '_'
+     oligo = row[18].split(/_/) 
    
-   #find region id for this gene and roi number
-   @region = Region.find(:first, :conditions => 
-      ["gene_code = ? AND roi_nr = ?", oligo[0], oligo[-1]])
+     #find region id for this gene and roi number
+     @region = Region.find(:first, :conditions => 
+                           ["gene_code = ? AND roi_nr = ?", oligo[0], oligo[-1]])
    
-   #convert chromosome start position to integer
-   chr_start = row[3].to_i
+     #convert chromosome start position to integer
+     chr_start = row[3].to_i
    
-   #create new oligo_design record
-   oligo_design = self.new(
+     #create new oligo_design record
+     oligo_design = self.new(
        :oligo_name => [row[0], row[13], row[18]].join('_'),
        :gene_code => oligo[0],
        :enzyme_code => row[13],
@@ -60,12 +59,17 @@ class OligoDesign < ActiveRecord::Base
        :amplicon_chr_end_pos => (chr_start + row[4].to_i + row[8].to_i - 1),
        :amplicon_seq => row[17]
        )
-   if oligo_design.save
-     @save_cnt += 1
-   else
-     @reject_cnt +=1
-   end
+     if oligo_design.save
+       @save_cnt += 1
+     else
+       @reject_cnt +=1
+     end  
+     
+   end  #end of fastercsv read loop
    
-   end
+   #populate global variables to pass to uploads controller
+   $rec_loaded   = @save_cnt
+   $rec_rejected = @reject_cnt
+   
  end
 end

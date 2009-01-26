@@ -2,8 +2,10 @@ class SynthesesController < ApplicationController
   # GET /syntheses
   # GET /syntheses.xml
   def index
-    @syntheses = Synthesis.find(:all, :select => "researcher, gene_code, created_at",
-                                      :group => "researcher, created_at DESC, gene_code")
+    # postgresql does not allow DESC in group by, so need to add the order by clause for sorting
+    @syntheses = Synthesis.find(:all, :select => "researcher, created_at, gene_code",
+                                      :group => "researcher, created_at, gene_code",
+                                      :order => "researcher, created_at DESC, gene_code")
 
     respond_to do |format|
       format.html # index.html.erb

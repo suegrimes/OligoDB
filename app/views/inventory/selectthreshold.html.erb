@@ -2,7 +2,7 @@
 
 <% form_tag :action => 'get_wellsltvolume' do %>
   <p>
-    Volume (ul):  <%= text_field_tag :thresholdvol, 50 %>
+    Volume (ul):  <%= text_field_tag :thresholdvol, @vol %>
   </p>
   <p>
     <%= submit_tag "Submit" %>

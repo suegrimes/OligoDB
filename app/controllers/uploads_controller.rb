@@ -43,7 +43,7 @@ include AuthenticatedSystem
 
     respond_to do |format|
       if @upload.save
-        flash[:notice] = 'File successfully updated.'
+        flash[:notice] = 'File successfully uploaded.'
         format.html { redirect_to :action => "index", :filetype => @filetype}
         format.xml  { render :xml => @upload, :status => :created, :location => @upload }
       else
@@ -63,17 +63,24 @@ include AuthenticatedSystem
     case @filetype
       when "Design"
         OligoDesign.loaddesigns(@filename)
-        flash[:notice] = 'Oligo design file loaded'
+        flash.now[:notice] = 'Oligo design file: ' + $rec_loaded.to_s + ' designs loaded, ' + 
+                                $rec_rejected.to_s + ' duplicate oligos ignored'
       when "Synthesis"
         OligoOrder.loadorders(@filename)
-        OligoPlate.loadplates(@filename)
+        OligoPlate.loadplates(@filename, $oligo_order_id)
+#        flash.now[:notice] = $rec_loaded.to_s + ' new oligo synthesis plates loaded, ' + 
+#                             $rec_rejected.to_s + ' plates unable to save'
+        plates_created = $rec_loaded
         OligoWell.loadwells(@filename)
-        flash[:notice] = 'Oligo synthesis plates loaded'
+        flash.now[:notice] = plates_created.to_s + ' new oligo synthesis plates loaded, ' + 
+                         $rec_loaded.to_s + ' new wells loaded, ' + $rec_rejected.to_s +
+                        ' duplicate wells ignored'
       when "Aliquot"
         Aliquot.loadaliquots(@filename)
-        flash[:notice] = 'BioMec table loaded'
+        flash.now[:notice] = 'BioMec data: ' + $rec_loaded.to_s + ' plate/wells loaded, ' +
+                              $rec_rejected.to_s + ' duplicate plate/wells ignored'
       else
-        flash[:notice] = 'Invalid content type for file load to db'
+        flash.now[:notice] = 'Invalid content type for file load to database'
     end
   end
   

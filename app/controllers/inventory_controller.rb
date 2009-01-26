@@ -5,16 +5,29 @@ class InventoryController < ApplicationController
   end
   
   def selectthreshold
+    @vol ||= '50'
   end
 
   def get_wellsltvolume
-    @oligos = OligoDesign.find(:all, :include => [:oligo_wells],
-               :conditions => ["oligo_wells.well_rem_volume < ?", params[:thresholdvol]])
-                
-    respond_to do |format|
-      format.html { render :action => "list_inventory" }
-      format.xml  { render :xml => @oligos }
+    @vol    = params[:thresholdvol]
+    @volnum = @vol.to_i
+    
+    # Check for numeric value entered for volume threshold
+    if @volnum == 0 
+      flash.now[:notice] = 'Please enter volume as a valid (non-zero) integer'
+      render :action => 'selectthreshold' 
+    
+    else 
+    # Volume was numeric, so find all oligo wells with remaining vol < @vol 
+      @oligos = OligoDesign.find(:all, :include => [:oligo_wells],
+               :conditions => ["oligo_wells.well_rem_volume < ?", @volnum])
+          
+      respond_to do |format|
+        format.html { render :action => "list_inventory" }
+        format.xml  { render :xml => @oligos }
+      end
     end
+    
   end
    
   def list_inventory
