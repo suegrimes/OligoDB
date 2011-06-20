@@ -58,6 +58,9 @@ class OligoDesign < ActiveRecord::Base
   ENZYMES_WO_GAPFILL = ENZYMES.reject { |enzyme| enzyme =~ /.*_gapfill/}
   #VECTOR = 'ACGATAACGGTACAAGGCTAAAGCTTTGCTAACGGTCGAG'
 
+  ZIP_FILE_ROOT = (CAPISTRANO_DEPLOY == true ? File.join(RAILS_ROOT, "..", "..", "shared") :
+                                               File.join(RAILS_ROOT, "..", "OligoFiles"))
+ 
   #****************************************************************************************#
   #  Define virtual attributes                                                             #
   #****************************************************************************************#

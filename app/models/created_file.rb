@@ -13,7 +13,8 @@
 class CreatedFile < ActiveRecord::Base
   belongs_to :researcher, :foreign_key => "researcher_id"
   
-  FILES_ROOT = File.join(RAILS_ROOT, "..", "OligoFiles", "created_file")
+  FILES_ROOT = (CAPISTRANO_DEPLOY == true ? File.join(RAILS_ROOT, "..", "..", "shared", "created_file") :
+                                            File.join(RAILS_ROOT, "..", "OligoFiles", "created_file"))
   
   def self.list_all_by_content(content_type)
     self.find_all_by_content_type(content_type,

@@ -243,7 +243,7 @@ class OligoDesignsController < ApplicationController
   # Download zip file                                                                         #    
   #*******************************************************************************************#
   def download_zip_file
-    filepath = File.join(RAILS_ROOT, "..", "OligoFiles", "oligo_exonome.zip") 
+    filepath = File.join(OligoDesign::ZIP_FILE_ROOT, "oligo_exonome.zip") 
     
     if FileTest.file?(filepath)
       flash[:notice] = "Zip file successfully downloaded"

@@ -25,7 +25,8 @@ class Upload < ActiveRecord::Base
   validates_presence_of :version_id,   :if => Proc.new {|v| v.content_type == 'Design'}
   validates_integrity_of :upload_file, :message => "file must be tab-delimited text of type .txt or .csv"
   
-  FILES_ROOT = File.join(RAILS_ROOT, "..", "OligoFiles", "upload_file")
+  FILES_ROOT = (CAPISTRANO_DEPLOY == true ? File.join(RAILS_ROOT, "..", "..", "shared", "upload_file") :
+                                            File.join(RAILS_ROOT, "..", "OligoFiles", "upload_file"))
   
   def self.listfile(id)
     uploadfile = self.find(id)
