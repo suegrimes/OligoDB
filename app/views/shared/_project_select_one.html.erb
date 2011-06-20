@@ -1,0 +1,5 @@
+<tr>
+  	<th>Project: </th>
+    <td><%= collection_select(:project, :project_id, @projects, :id, :project_name,
+                         {:include_blank => '(No project)'}, {:size => 4})%></td>
+  </tr>  	

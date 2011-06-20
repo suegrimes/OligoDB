@@ -1,0 +1,24 @@
+<h1>Listing selector_sites</h1>
+
+<table class="border">
+  <tr>
+    <th>Enzyme code</th>
+    <th>Design result</th>
+    <th>Selector</th>
+  </tr>
+
+<% for selector_site in @selector_sites %>
+  <tr>
+    <td><%=h selector_site.enzyme_code %></td>
+    <td><%=h selector_site.design_result %></td>
+    <td class="hardbreak"><%=h selector_site.selector %></td>
+    <td><%= link_to 'Show', selector_site %></td>
+    <td><%= link_to 'Edit', edit_selector_site_path(selector_site) %></td>
+    <td><%= link_to 'Destroy', selector_site, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New selector_site', new_selector_site_path %>

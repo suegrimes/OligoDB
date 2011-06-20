@@ -1,0 +1,18 @@
+<% multiple_versions ||= false %>
+<% if multiple_versions == true %>
+  <%= render :partial => 'shared/version_select_multi' %>
+<% else %>
+  <%= render :partial => 'shared/version_select' %>
+<% end %>
+<tr><td>&nbsp</td></tr>
+
+<% coll_obj ||= 'oligo_design' %>  
+<tr>
+  <th>Genes:</th>
+  <td><%= collection_select(coll_obj, :gene_code, @proj_genes, :gene_code, :gene_code,
+                       {:include_blank => 'All gene(s)'},
+                       {:size => 5, :multiple => true}) %></td>
+  <th>Enzymes:</th>					   
+  <td><%= select(:enzyme, :enzyme_code, OligoDesign::ENZYMES_WO_GAPFILL,
+                {:include_blank => '(All)'}, {:size => 5, :multiple => :multiple}) %> </td>
+</tr> 

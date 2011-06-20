@@ -1,3 +1,4 @@
+
 # Be sure to restart your server when you modify this file
 
 # Uncomment below to force Rails into production mode when
@@ -15,6 +16,11 @@ Rails::Initializer.run do |config|
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.
   # See Rails::Configuration for more options.
+  
+  # Use timestamped_migrations = false, for sequential migration numbering
+  # Defaults to true, for UTC timestamp migration numbering
+  # Note: this statement only works in Rails versions 2.1.1 or greater
+  # config.active_record.timestamped_migrations = false
 
   # Skip frameworks you're not going to use. To use Rails without a database
   # you must remove the Active Record framework.
@@ -25,7 +31,10 @@ Rails::Initializer.run do |config|
   # config.gem "bj"
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "aws-s3", :lib => "aws/s3"
-
+  # config.gem "fastercsv", :version => '1.4.0', :source => "http://fastercsv.rubyforge.org"
+    config.gem "fastercsv"
+    config.gem "ar-extensions", :version => '0.9.2'
+    
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.
   # :all can be used as a placeholder for all plugins not explicitly named
@@ -64,5 +73,13 @@ Rails::Initializer.run do |config|
 
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
-  
-  end
+   
+ end
+
+# Require modules which defines methods shared by a several models
+include OligoExtensions              # oligo name extensions (eg. extract gene code)
+include SqltableExtensions           # sql methods (eg. find next auto increment #)
+
+# Set MySQL connection parameters in attempt to avoid Mongrel/MySQL timeout issue
+# Timeout of 604800 (mins) == one week
+ActiveRecord::Base.verification_timeout = 604800

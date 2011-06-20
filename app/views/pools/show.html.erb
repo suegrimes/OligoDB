@@ -1,0 +1,86 @@
+<h3>Pool Description:</h3>
+
+<table class="border">
+<tr>
+	<th>Pool Name:</th>   
+	<th>Tube Label:</th>  
+	<th>Room/Shelf/Bin/Box:</th>
+  </tr>
+  <tr>
+  	<td><%=h @pool.pool_name %> </td>
+	<td><%=h @pool.tube_label %></td>
+	<% if @pool.storage_location %>
+	  <td><%=h @pool.storage_location.location_string %></td>
+	<% end %>
+  </tr>
+</table>
+
+<h3>Pool Composition:</h3>
+<table class='border'>
+  <tr>
+  	<th>Project</th>
+  	<th>Enzyme</th>
+	<th>Description:</th>
+	<th># Oligos</th>
+	<th>Source Conc (uM)</th>
+	<th>Pool Vol(ul)</th>
+  </tr>
+  <tr>
+  	<td><% if @pool.project %><%=h @pool.project.project_name %><% end %></td>
+	<td><%=h @pool.enzyme_code %></td>
+	<td><%=h @pool.pool_description %></td>
+	<td>
+	  <% if @pool_nroligos > 0 %>
+	    <%= link_to @pool_nroligos, :controller=>'subpools', :action=>'show_dtls',
+                                    :pool_id => @pool.id %>
+	  <% else %>
+	    <%=h @pool_nroligos %>
+	  <% end %>
+	</td>
+	<td><%=h @pool.source_conc_um %></td>
+	<td><%=h @pool.pool_volume %></td>
+  </tr>
+</table>
+
+
+<h3>From Subpool(s):</h3>
+<table class='border'>
+      <tr>
+      	 <th>Subpool</th>
+      	 <th>Enzyme</th>
+	     <th>BioMek Run</th>
+	     <th>Well</th>
+		 <th># of Oligos</th>
+	     <th>ul to Pool</th>
+		 <th>Oligo conc in Pool (nM)</th>
+	   </tr>
+	   
+	 <% if @pool.subpools %>
+       
+	   <% for subpool in @pool.subpools %>
+	   <tr>
+	     <td><%=h subpool.pool_well.description %></td>
+	   	 <td><%=h subpool.pool_well.enzyme_code %></td>
+	     <td><%=h subpool.pool_well.pool_plate.pool_plate_nr %></td>
+	     <td><%=h subpool.pool_well.pool_well_nr %></td>
+		 <td><%= link_to subpool.pool_well.nr_oligos, :controller => "subpools", :action => "show_dtls", 
+                                                      :subpool_id => subpool.id   %></td>
+	     <td><%=h subpool.ul_to_pool %></td>
+		 <td><%=h subpool.oligo_conc_nm %></td>
+	    </tr>
+		<% end %>
+		
+	  <% else %>
+	    <tr>
+		  <td colspan=8>No subpools currently associated with this pool</td>
+		</tr>
+	  <% end %>	   
+</table>
+	
+<%= link_to 'Edit Pool', edit_pool_path(@pool) %> |
+<%= link_to 'Add/Modify Wells', :controller=>'pools', :action=>'addwells',
+                                :pool_id => @pool.id %> |
+<% if @pool_nroligos > 0 %>
+  <%= link_to 'Upd subpool conc', :controller => "subpools", :action => "upd_conc", :pool_id => @pool.id %> |
+<% end %>
+<%= link_to 'Show All Pools', pools_path %>

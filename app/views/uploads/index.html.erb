@@ -1,23 +1,51 @@
-<h1>Uploaded <%= @filetype %> Files</h1>
+<h3>Uploaded <%= @filetype %> Files</h3>
 
-<table>	
+<%= button_to 'Upload new file', {:action=>'new', :filetype=>@filetype} %>
+
+<table class="border">	
     <tr>
     	<th>File name</th>
-		<th width=10 ></th>
 		<th>Content type</th>
-		<th>Upload date</th>
+		<% if @filetype == 'Design' %>
+		<th>Version</th>
+		<% end %>
+		<th>File upload</th>	
+		<th>Database load</th>
 	</tr>
  <% for upload in @uploads %>
  	<tr>
- 		<td><%= upload.upload_file%></td>
-		<td width=10 ></td>
-		<td><%= upload.content_type%></td>
-		<td><%= upload.created_at %></td>
- 		<td><%= link_to 'Load to DB', :controller=>'uploads', :action=>'loadtodb',
-                            :id=>upload.id, :filetype=> upload.content_type%></td>
+ 		<td width=250, class="hardbreak"><%= link_to upload.file_name_no_dir, 
+                                             :action => 'show_files', :id => upload.id,
+                                             :filetype => @filetype %></td>
+		<td align=center><%= upload.content_type%></td>
+		<% if @filetype == 'Design' %>
+		  <td> <%= version_name(upload.version_id) if upload.version_id %></td>
+		<% end %>
+		
+		<td><%= upload.created_at.strftime("%m-%d-%Y %I:%M%p") if upload.created_at %></td>
+		
+		<% if upload.loadtodb_at %>
+		  <td><%= upload.loadtodb_at.strftime("%m-%d-%Y %I:%M%p")%></td>
+        <% else %> 
+		  <td class="noborder"><%= link_to('Load to DB', {:controller=>'uploads', :action=>'loadtodb', 
+                                           :id=> upload.id, :filetype=> upload.content_type}) %></td>
+		  <td class="noborder"><%= link_to('Delete File', upload,
+                                                        {:confirm => 'Are you sure?', :method => :delete})%></td>
+		<% end %>
+		
+        <% if upload.loadtodb_at && current_user && current_user.has_role?("admin") %>
+		  <td class="noborder"><%= link_to 'Reload to DB', :controller=>'uploads', :action=>'loadtodb', 
+                                           :id=>upload.id, :filetype=> upload.content_type %></td> 
+		  <td class="noborder"><%= link_to 'Delete File', upload, :confirm => 'Are you sure?', 
+                                                                :method => :delete %></td>
+		<% end %>
+		
  	</tr> 
  <%end%>
 </table>
 
-<br />
-<%= link_to 'Upload new file', {:action=>'new', :filetype=>@filetype} %>
+<span>
+<%= link_to 'File format help', {:controller=>'help', :action=>'index', 
+                :filetype=>@filetype} %>	
+</span>
+	

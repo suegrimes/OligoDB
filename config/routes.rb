@@ -1,46 +1,98 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :users
-
-  map.resource :session
-
+  map.connect '', :controller => "oligo_designs", :action => "welcome" 
   map.signup  '/signup', :controller => 'users',   :action => 'new' 
   map.login  '/login',  :controller => 'sessions', :action => 'new'
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
+  map.help '/help', :controller => 'help', :action => 'index'
   
-  map.resources :pool_wells
-
-  map.resources :oligo_wells
-
-  map.connect '', :controller => "oligo_designs", :action => "welcome" 
+  # Routes for genes, target regions
+  map.resources :genes
+  map.resources :target_regions
+  map.resources :selector_sites  
   
+  # Routes for oligo designs (selectors)
+  map.resources :archive_oligo_designs 
+  map.resources :pilot_oligo_designs
   map.resources :oligo_designs
-
-  map.resources :researchers
+  map.resources :vectors
+  map.exportd 'export_designs',        :controller => 'oligo_designs',   :action => 'export'
   
-  map.resources :syntheses
-
-  map.resources :pool_plates
-
-  map.resources :aliquots
-
+  # Oligo design queries
+  map.show_oligo 'show_oligo',         :controller => 'oligo_designs', :action => 'show', :id => :id
+  map.designquery 'designquery',       :controller => 'oligo_designs', :action => 'select_project'
+  map.oligoparams 'oligoparams',       :controller => 'oligo_designs', :action => 'select_params'
+  map.list_selected 'list_oligos',     :controller => 'oligo_designs', :action => 'list_selected'
+  
+  # Routes for oligo synthesis orders/files
+  map.synth_order 'synth_order',       :controller => 'synth_orders', :action => 'new_order'
+  map.synth_params 'synth_params',     :controller => 'synth_orders', :action => 'select_params'
+  map.synth_files 'synth_files',       :controller => 'synth_orders',  :action => 'list_files'
+  map.show_synth  'show_synth',        :controller => 'synth_orders',  :action => 'show_files'
+  map.del_synth  'del_synth',          :controller => 'synth_orders',  :action => 'delete_file'
+  
+  # Routes for synthesized oligos
+  map.resources :synth_oligos
+  
+  # Synthesized oligo queries
+  map.inventoryquery 'inventoryquery', :controller => 'synth_oligos',  :action => 'select_project'
+  map.inv_params 'inv_params',         :controller => 'synth_oligos',  :action => 'select_genes_and_ver'
+  map.list_inventory 'list_inventory', :controller => 'synth_oligos',  :action => 'list_inventory'
+  map.export_inventory 'export_inventory', :controller => 'synth_oligos', :action => 'export_inventory'
+  
+  # Routes for oligo plate/well inventory (& general inventory)
   map.resources :oligo_plates
+  map.resources :oligo_wells
   
-  map.resources :oligo_orders
+  map.resources :aliquots
+  map.resources :storage_locations
+  
+  map.plate_copy 'plate_copy',         :controller => 'oligo_plates',  :action => 'copy_params'
+  map.plates_edit 'plates_edit',       :controller => 'oligo_plates',  :action => 'edit_multi', :method => :get
+  map.wellvolquery 'wellvolquery',     :controller => 'oligo_wells',   :action => 'selectthreshold'
+  
+  # Routes for pool inventory
+  map.resources :pool_plates
+  map.resources :pool_wells
+  map.resources :pools
+  map.resources :subpools
+  
+  map.addwells 'addwells',             :controller => 'pools',         :action => 'addwells'
+  map.showwells 'showwells',           :controller => 'pools',         :action => 'showwells'
+  map.pools_edit 'pools_edit',         :controller => 'pools',         :action => 'edit_multi', :method => :get
+  map.pool_vol 'pool_vol',             :controller => 'pools',         :action => 'upd_pool_vol'
+  map.wells_edit 'wells_edit',         :controller => 'pool_wells',    :action => 'edit_multi', :method => :get
+  map.subpools_edit 'subpools_edit',   :controller => 'subpools',      :action => 'edit_multi', :method => :get
+  map.subpool_dtls 'subpool_dtls',     :controller => 'subpools',      :action => 'show_dtls'
+  map.subpool_conc 'subpool_conc',     :controller => 'subpools',      :action => 'upd_conc'
+  
+  map.export_pool 'export_pool',       :controller => 'subpools',      :action => 'export_pool'
+  
+  # Routes for BioMek run templates/files
+  map.biomek_new 'biomek_new',         :controller => 'biomek_runs',   :action => 'biomek_new'
+  map.biomek_files 'biomek_files',     :controller => 'biomek_runs',   :action => 'list_files'
+  map.show_biomek 'show_biomek',       :controller => 'biomek_runs',   :action => 'show_files'
+  map.del_biomek 'del_biomek',         :controller => 'biomek_runs',   :action => 'delete_file'
+  map.exportb 'export_biomek',         :controller => 'biomek_runs',     :action => 'export_biomek'
 
+  # Routes for general uploads
   map.resources :uploads
-
-  map.resources :regions
+  map.uploadfile 'uploadfile',      :controller => 'uploads', :action => 'new'
   
-  map.designquery 'designquery', :controller => 'oligo_designs', :action => 'select_gene'
-  map.uploadfile 'uploadfile', :controller => 'uploads', :action => 'new'
-  map.uploadselector 'uploaddesign', :controller => 'oligo_designs', :action => 'upload_file'
-  map.inventoryquery 'inventoryquery', :controller => 'inventory', :action => 'selectparams'
-  map.selectthreshold 'selectthreshold', :controller => 'inventory', :action => 'selectthreshold'
-  map.listinventory 'listinventory', :controller => 'inventory', :action => 'list_inventory'
-  map.poolparams 'poolparams', :controller => 'pool_plates', :action => 'poolparams'
-  map.wellvolquery 'wellvolquery', :controller => 'inventory', :action => 'selectthreshold'
-  map.notimplemented 'notimplemented', :controller => 'dummy', :action => 'notimplemented'
-
+  # Routes for other downloads
+  map.zip_download 'zip_download',  :controller => 'oligo_designs',   :action => 'zip_download'
+  
+  # Routes for supporting tables
+  map.resources :researchers
+  map.resources :projects
+  map.resources :users
+  map.resources :versions
+  map.resources :flag_defs
+  map.resource  :session  
+  
+  # Miscellaneous, Testing
+  map.notimplemented 'notimplemented', :controller => 'dummy',         :action => 'notimplemented'
+  map.testing 'testing',               :controller => 'dummy',         :action => 'test'
+  
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

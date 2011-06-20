@@ -1,0 +1,14 @@
+<h3>New project</h3>
+
+<% form_for(@project) do |f| %>
+  <%= f.error_messages %>
+  
+  <table class="border">
+  <%= render :partial => 'project', :locals => {:f => f} %>
+  </table>
+  
+  <%= f.submit "Create" %>
+ 
+<% end %>
+
+<%= link_to 'Back', projects_path %>

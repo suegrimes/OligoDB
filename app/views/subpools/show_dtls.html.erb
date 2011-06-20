@@ -1,0 +1,52 @@
+<% form_tag :action => "export_pool" do %>
+
+<h3>
+<% if @pool %>
+Details for Pool: <%= @pool_name %> <%= hidden_field_tag("pool_id", @pool.id) %> 
+<% elsif @subpool %>
+Details for Subpool: <%= @subpool_name %><%= hidden_field_tag("subpool_id", @subpool.id)%>
+<% else %>
+Pool Details
+<% end %>
+(<%= @nr_oligos %> oligos)
+</h3>
+
+<p><%= submit_tag "Export Pool/Oligo Details" -%></p>
+
+<table class="border">
+  <tr>
+  	<th>Oligo name</th>
+	<th>Ampl Length</th>
+	<% if @pool %>
+	<th>Subpool</th>
+	<th>Conc in Pool</th>
+	<% end %>
+    <th>Source plate</th>
+	<th>Well</th>
+	<th>ul to BioMek</th>
+    <th>BioMek plate</th>
+	<th>Well</th>
+  </tr>
+
+<% for subpool in @subpools %>
+  <%= hidden_field_tag("export_id[]", subpool.id)%>
+  <% for aliquot in subpool.pool_well.aliquots %>
+  <tr>
+  	<td><%=h aliquot.oligo_well.oligo_name %></td>
+	<td><%=h aliquot.oligo_well.synth_oligo.amplicon_length %></td>
+	<% if @pool %>
+	<td><%=h subpool.pool_well.description %></td>
+	<td><%=h subpool.oligo_conc_nm %></td>
+	<% end %>
+    <td><%=h aliquot.plate_from %></td>
+	<td align=center><%=h aliquot.well_from %></td>
+	<td><%=h aliquot.volume_pipetted %></td>
+    <td><%=h aliquot.plate_to %></td>
+	<td align=center><%=h aliquot.well_to %></td>
+  </tr>
+  <% end %>
+<% end %>
+</table>
+<% end %>
+
+<%= link_to 'Back', :back %>

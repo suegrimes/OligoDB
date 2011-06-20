@@ -1,0 +1,43 @@
+
+<% form_tag :action => 'create_order' do %>
+<table>
+  <tr>
+	 <th>Nr wells per plate:</th>
+	 <td>    <%= select_tag(:nr_wells, options_for_select(%w{96 384})) %>
+	 <th>Total oligos: </th>
+	 <td><%= @oligo_designs.size %></td>
+	 <th>Starting plate number:</th>
+	 <td><%= @start_plate_nr %>
+	     <%= hidden_field_tag(:plate_start, @start_plate_nr) %></td>
+  </tr>
+ 
+  <tr>
+	<th>Researcher:</th>
+	<td><%= @researcher.researcher_name %>
+		<%= hidden_field_tag(:researcher_id, @researcher.id)%></td>
+	<td colspan=2><%= submit_tag "Generate oligo order"%></td>
+  </tr>
+</table>
+<br>
+
+<table class="border"> 
+  <tr>
+  	<th>Oligo Name</th> 
+  	<th>Gene</th>
+  	<th>Sequence</th>
+  </tr>
+  
+<% for oligo in @oligo_designs %>
+  <tr>
+    <td><%= oligo.oligo_name %>
+	    <%= hidden_field_tag("oligo[][oligo_name]", oligo.oligo_name)%></td>
+	<td><%= oligo.gene_code %>
+	    <%= hidden_field_tag("oligo[][gene_code]", oligo.gene_code) %></td>
+	<td class="hardbreak"><%= oligo.selector_useq %>
+	    <%= hidden_field_tag("oligo[][selector_useq]", oligo.selector_useq) %></td>
+  </tr>
+ <% end %>
+<% end %>
+</table>
+
+<%= link_to 'Back', :back %>

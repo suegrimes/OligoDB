@@ -1,0 +1,13 @@
+
+<h3>New oligo synthesis order</h3>
+
+<% form_tag :action=> 'select_params'  do %>
+<table>
+  <%= render :partial => 'shared/project_select_one' %>
+  <tr><td>&nbsp;</td></tr>
+ 
+  <tr>
+  	<td></td>
+  	<td><%= submit_tag "Enter parameters" %></td></tr>
+</table>
+<%end%>

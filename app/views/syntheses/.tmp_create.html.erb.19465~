@@ -1,7 +1,0 @@
-<p> Params <%= params.inspect %></p>
-
-<p> Oligo <%= params[:oligo].inspect %></p>
-
-<p><%= params[:gene].inspect %></p>
-<p><%= params[:researcher].inspect %></p>
-  

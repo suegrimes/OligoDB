@@ -1,0 +1,23 @@
+<h1>New selector_site</h1>
+
+<% form_for(@selector_site) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :enzyme_code %><br />
+    <%= f.text_field :enzyme_code %>
+  </p>
+  <p>
+    <%= f.label :design_result %><br />
+    <%= f.text_field :design_result %>
+  </p>
+  <p>
+    <%= f.label :selector %><br />
+    <%= f.text_field :selector %>
+  </p>
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', selector_sites_path %>

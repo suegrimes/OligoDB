@@ -1,0 +1,34 @@
+<h3>Listing pools</h3>
+
+<table class="border">
+  <tr>
+    <th>Pool name</th>
+    <th>Pool description</th>
+	<th># of oligos</th>
+	<th>Pool vol (ul) </th>
+    <th>Room/Shelf/Bin/Box</th>
+  </tr>
+
+<% for pool in @pools %>
+  <tr>
+	<td><%= link_to pool.pool_name, pool_url(:id => pool.id) %></td>
+    <td><%=h pool.pool_description %></td>
+	<td><% if pool.nr_oligos %>
+	    <%= link_to pool.nr_oligos, :controller => "subpools", :action => "show_dtls", 
+                                    :pool_id => pool.id  %>
+		<% end %>
+	</td> 
+	<td><%=h pool.pool_volume %></td>
+    <td><%=h pool.room_nr %></td>
+	
+	<% if current_user && current_user.has_role?("admin") %>
+	<td><%= link_to 'Upd vol', :controller => "pools", :action => "upd_pool_vol", :pool_id => pool.id %></td>	
+	<td><%= link_to 'Upd conc', :controller => "subpools", :action => "upd_conc", :pool_id => pool.id %></td>
+	<td><%= link_to 'Delete', pool, :confirm => 'Are you sure?', :method => :delete %></td>
+	<% end %>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'New pool', new_pool_path %> |
+<%= link_to 'Edit all pools', pools_edit_path %>

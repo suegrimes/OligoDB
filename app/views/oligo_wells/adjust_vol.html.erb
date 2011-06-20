@@ -1,0 +1,21 @@
+<h3>Select plate/well for volume adjustment </h3>
+
+<table>
+<% form_tag :action => 'update_vol' do %>
+  <tr>
+    <th>Plate:</th>
+	<td><%= text_field_tag(:plate, nil, :size => 10) %></td>
+  </tr>
+  <tr>
+  	<th>Well:</th>
+	<td><%= text_field_tag(:well, nil, :size => 4) %></td>
+  </tr>
+  <tr>
+  	<th>Volume (corrected):</th>
+	<td><%= text_field_tag(:volume, nil, :size => 8) %></td>
+  </tr>
+</table>
+
+<%= submit_tag "Submit" %>
+<% end %>
+</table>

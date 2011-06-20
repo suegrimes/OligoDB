@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: aliquots
+#
+#  id               :integer(11)     not null, primary key
+#  oligo_well_id    :integer(11)     default(0)
+#  pool_well_id     :integer(11)     default(0)
+#  plate_from       :string(50)
+#  well_from        :string(4)
+#  to_plate_or_pool :string(1)
+#  plate_to         :string(50)
+#  well_to          :string(4)
+#  volume_pipetted  :decimal(11, 3)
+#  created_at       :datetime
+#  updated_at       :datetime
+#
+
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:

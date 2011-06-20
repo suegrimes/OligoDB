@@ -1,4 +1,6 @@
 class ResearchersController < ApplicationController
+  require_role "stanford"
+  
   # GET /researchers
   # GET /researchers.xml
   def index

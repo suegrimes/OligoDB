@@ -1,0 +1,18 @@
+<h1>Listing target_regions</h1>
+
+<table class="border">
+  <tr>
+    <th>Gene roi</th>
+    <th>Fold coverage</th>
+    <th>Target seq clean</th>
+  </tr>
+
+<% for target_region in @target_regions %>
+  <tr>
+    <td><%=h target_region.gene_roi %></td>
+    <td><%=h target_region.fold_coverage %></td>
+    <td class="hardbreak"><%=h target_region.target_seq_clean %></td>
+    <td><%= link_to 'Show', target_region %></td>
+  </tr>
+<% end %>
+</table>

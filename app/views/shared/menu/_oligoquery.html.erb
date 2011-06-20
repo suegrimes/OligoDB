@@ -1,0 +1,7 @@
+<li><%= link_to_function "Query Oligos", toggle_div(:querysubmenu) %></li>
+      <div id="querysubmenu", style="display:none">
+      	 <ul>
+	     <%= render :partial => 'shared/menu/oligodesign_query' %>
+	     <li><%= link_to 'Query Synthesized Oligos', inventoryquery_url %></li>
+		 </ul>
+      </div>

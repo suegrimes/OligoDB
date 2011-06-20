@@ -1,0 +1,15 @@
+<tr>
+  <th><%= f.label :project_name %></th>
+  <td><%= f.text_field :project_name %></td>
+</tr>
+	
+<tr>
+  <th><%= f.label :project_description %></th>
+  <td><%= f.text_field :project_description %></td>
+</tr>
+
+<tr>
+  <th>Default Build/MatLab version:</th>
+  <td><%= f.collection_select(:version_id, @versions, :id, :version_id_flagged_name) %>
+  <span class="notes">'*' indicates current production version</span></td>
+</tr>

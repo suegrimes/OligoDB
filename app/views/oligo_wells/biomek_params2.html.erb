@@ -1,0 +1,26 @@
+<h3>Select BioMek parameters </h3>
+
+  <% form_tag :action => 'biomek_display' do %>
+	<%= hidden_field_tag("researcher[researcher_id]", @researcher.id) %>
+	
+  <table class="border">
+  	<tr>
+	  <th>Researcher:</th>
+	  <td><%= @researcher.researcher_name%></td>
+	</tr>
+	
+	<%= render :partial => 'shared/genes_or_ids', :locals => {:multiple_versions => true} %>
+	
+    <tr>
+	  <th>Enzyme:</th>
+	  <td><%= select(:enzyme, :enzyme_code, @enzymes, {:include_blank => '(All)'},
+                    {:size => 7, :multiple => :multiple}) %></td>
+	</tr>
+	<tr>
+	  <th>Default volume:&nbsp; </th>
+	  <td><%= text_field_tag :default_vol, 5 %></td>
+    </tr>
+  </table>
+
+  <p><%= submit_tag "Submit" %></p>
+<%end%>

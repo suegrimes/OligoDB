@@ -1,0 +1,22 @@
+<h3>Editing project</h3>
+
+<% form_for(@project) do |f| %>
+  <%= f.error_messages %>
+  
+  <table class="border">
+  <%= render :partial => 'project', :locals => {:f => f} %>
+  </table>
+  
+  <div id="proj_gene">
+  <% for project_gene in @project.project_genes %>
+    <%= render :partial => 'project_gene', :locals => {:project_gene => project_gene} %>
+  <% end %>
+  </div>
+  
+  	<%= add_gene_link "Add gene" %><br/>
+  
+    <p><%= f.submit "Update" %></p>
+<% end %>
+
+<%= link_to 'Show', @project %> |
+<%= link_to 'Back', projects_path %>

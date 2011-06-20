@@ -1,0 +1,17 @@
+<%= error_messages_for :user %>
+<% form_for(@user) do |f| -%>
+<p><%= f.label :login %>
+   <%= f.text_field :login %></p>
+
+<p><%= f.label :email %>
+<%= f.text_field :email %></p>
+
+<p><%= f.label :roles %>
+<% for role in @roles do %>
+    <%= check_box_tag "user[role_ids][]", role.id, @user.has_role?(role.name,'admin_does_not_default') -%>
+    <%= role.name %>
+<% end %>
+</p>
+
+<p><%= f.submit 'Update' %></p>
+<% end -%>

@@ -1,0 +1,127 @@
+<h3>Selectors file (Oligo designs) </h3>   
+<P>Output from MATLAB. Tab delimited text file, first row is header row.
+  Text in column headings is not important, but data in columns MUST be in the 
+  correct order as indicated below, and numeric fields must contain numbers.</P>
+
+<TABLE class="border">
+  <colgroup>
+  	<col width=5% />
+	<col width=15% />
+	<col width=40% />
+	<col width=20% />
+  </colgroup> 
+  <TR>
+    <TH>Col</TH>
+    <TH>Field name</TH>
+    <TH>Field description</TH>
+    <TH>Example</TH></TR>
+  <TR>
+    <TD>A</TD>
+    <TD>Date</TD>
+    <TD>MatLab run date (mmddyy) </TD>
+    <TD>031809</TD></TR>
+  <TR>
+    <TD>B</TD>
+    <TD>Project</TD>
+    <TD>Project name</TD>
+    <TD>Full_design V3</TD></TR>
+  <TR>
+    <TD>C</TD>
+    <TD>Chr_num</TD>
+    <TD>Chromosome number</TD>
+    <TD>14</TD></TR>
+  <TR>
+    <TD>D</TD>
+    <TD>Chr_target_start</TD>
+    <TD>Target start position on chromosome</TD>
+    <TD>104306673</TD></TR>
+  <TR>
+    <TD>E</TD>
+    <TD>L_sel_start</TD>
+    <TD>Left selector relative start position</TD>
+    <TD>981</TD></TR>
+  <TR>
+    <TD>F</TD>
+    <TD>L_sel_end</TD>
+    <TD>Left selector relative end position</TD>
+    <TD>1000</TD></TR>
+  <TR>
+    <TD>G</TD>
+    <TD>R_sel_start</TD>
+    <TD>Right selector relative start position</TD>
+    <TD>1198</TD></TR>
+  <TR>
+    <TD>H</TD>
+    <TD>R_sel_end</TD>
+    <TD>Right selector relative end position</TD>
+    <TD>1217</TD></TR>
+  <TR>
+    <TD>I</TD>
+    <TD>Amplicon_length</TD>
+    <TD>R_sel_end - L_sel_start</TD>
+    <TD>237</TD></TR>
+  <TR>
+    <TD>J</TD>
+    <TD>N_sites_start</TD>
+    <TD>Left_site + Right_site</TD>
+    <TD>2</TD></TR>
+  <TR>
+    <TD>K</TD>
+    <TD>Left_site</TD>
+    <TD>No of restriction sites used on left flank</TD>
+    <TD>1</TD></TR>
+  <TR>
+    <TD>L</TD>
+    <TD>Right_site</TD>
+    <TD>No of restriction sites used on right flank</TD>
+    <TD>1</TD></TR>
+  <TR>
+    <TD>M</TD>
+    <TD>Polarity</TD>
+    <TD>Polarity of target strand (independent of direction)</TD>
+    <TD>Minus</TD></TR>
+  <TR>
+    <TD>N</TD>
+    <TD>Enz</TD>
+    <TD>Enzyme</TD>
+    <TD>MseI</TD></TR>
+  <TR>
+    <TD>O</TD>
+    <TD>Selector</TD>
+    <TD>Left selector + vector + Right selector (= 80 bp)</TD>
+    <TD>AGTAGGAAGCCAACCT..</TD></TR>
+  <TR>
+    <TD>P</TD>
+    <TD>5prime_end_20b_sel</TD>
+    <TD>5' end, 20 base selector (= either left selector or 
+         right selector, depending on polarity of target strand)</TD>
+    <TD>AGTAGGAAGCCAACCTCTTA</TD></TR>
+  <TR>
+    <TD>Q</TD>
+    <TD>3prime_20b_sel</TD>
+    <TD>3' end, 20 base selector (= either right or left 
+         selector, depending on polarity of target strand)</TD>
+    <TD>AATACAGATCATGGCACGAG</TD></TR>
+  <TR>
+    <TD>R</TD>
+    <TD>Amplicon_seq</TD>
+    <TD>Amplicon sequence (= sequence from leftmost base of left selector,
+	 to rightmost base of right selector.</TD>
+    <TD>AATACAGATCATGGCAC..</TD></TR>
+  <TR>
+    <TD>S</TD>
+    <TD>Roi_ids_of_selectors</TD>
+    <TD>ROI_id field from target.txt file</TD>
+    <TD>AKT1_ROI_11</TD></TR>
+  <TR>
+    <TD>T</TD>
+    <TD>U_selector</TD>
+    <TD>Selector sequence with selected 'T' bases replaced with 'U' 
+      Allows oligo to be broken at 'U' sites, creating pieces too 
+      short to hybridize = &gt; degradation of oligo</TD>
+    <TD>CTTCGCUCCCACT..</TD></TR>
+  <TR>
+    <TD>&gt;T</TD>
+    <TD>Miscellaneous</TD>
+    <TD>Any additional columns will be ignored</TD>
+    <TD></TD></TR></TABLE>

@@ -1,0 +1,19 @@
+<h3>New pool</h3>
+
+<% form_for(@pool) do |f| %>
+  <%= f.error_messages %>
+
+<table class="border">
+	<%= render :partial => 'pool', :locals => {:f => f} %>
+	<tr><td>&nbsp</td></tr>
+    <tr>
+      <th>Enter filter for BioMek runs for this pool:</th>
+      <td><%= text_field_tag :biomek %></td>
+      <td><%= f.submit "Create Pool" %></td>
+	</tr>
+<% end %>
+</table>
+
+<%= link_to 'Back', pools_path %> |
+<%= link_to 'New project', new_project_path %> |
+<%= link_to 'New storage location', new_storage_location_path %>

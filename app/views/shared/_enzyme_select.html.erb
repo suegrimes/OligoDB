@@ -1,0 +1,3 @@
+  	<th>Enzymes:</th>
+	<td><%= collection_select(:enzyme, :enzyme_code, @enzymes, :enzyme_code, :enzyme_code,
+                              {:include_blank => '(All)'}, {:size => 7, :multiple => :multiple}) %> </td>

@@ -1,3 +1,0 @@
-<p> Selector file loaded </p>
-
-<%= link_to 'List selectors', selectors_url %>

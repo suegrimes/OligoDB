@@ -1,0 +1,10 @@
+<li><%= link_to_function "BioMek/Pools", toggle_div(:biomeksubmenu) %></li>	
+      <div id="biomeksubmenu", style="display:none">
+      	 <ul>
+	     <li><%= link_to 'Create BioMek Template', {:controller=>'oligo_wells', :action=>'biomek_new'} %></li>
+		 <li><%= link_to 'List BioMek Templates', biomek_files_path %></li>
+	     <li><%= link_to 'Load BioMek File', {:controller=>'uploads', :action=>'index', 
+                         :filetype => 'BioMek'}  %></li>
+		 <li><%= link_to 'Create/Update Pools', pools_url  %></li>
+		 </ul>
+      </div>

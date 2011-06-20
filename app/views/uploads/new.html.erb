@@ -2,17 +2,29 @@
 
 <% upload_form_for(@upload, :action=> 'create') do |f| %>  
   <%= error_messages_for :upload %>
-
+  
+  <%= f.hidden_field :content_type, :value=> @filetype %>
   <table>
-    <tr><%= f.hidden_field :content_type, :value=> @filetype %></tr>
-	<tr>Select a new file to upload:</tr>
+  	<tr>
+  	  <% if @filetype == 'Design' %>
+	  <th>Matlab Version</th>
+	  <% end %>
+	  <th><%=h @filetype %> file</th>
+	</tr>
 	<tr>
+	  <% if @filetype == 'Design' %>
+	  <td><%= f.collection_select(:version_id, @versions, :id, :version_id_flagged_name, 
+                                  {:include_blank => 'Select version'}) %></td>  
+	  <% end %>
 	  <td><%= f.upload_column_field :upload_file, :size=>30%> </td>
 	  <td><%= f.submit "Upload File" %></td> 
 	</tr>
   </table>
-
+ 
 <% end %>
 
 <br />
+<% if @filetype == 'Design' %>
+<%= link_to 'Add Version', new_version_url %> |
+<% end %>
 <%= link_to 'Back', :back %>

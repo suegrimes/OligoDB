@@ -1,0 +1,17 @@
+<h3>Synthesized Oligos query - Select parameters</h3>
+
+<% form_tag :action=> 'list_inventory', :param_type => 'gene_id' do %>
+
+<table>
+  <%= render :partial => 'shared/genes_or_ids', :locals => {:multiple_versions => true} %>
+  
+  <tr>
+  	<th>Report Type:</th>
+  	<td><%= radio_button_tag(:rpt_type, 'design', :checked => 'true')%>Designs &nbsp;&nbsp;
+	    <%= radio_button_tag(:rpt_type, 'inventory')%>Inventory </td>
+  </tr>	  
+</table>
+
+<p><%= submit_tag "Submit"  %></p>
+<%end%>
+

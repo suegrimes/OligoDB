@@ -1,0 +1,48 @@
+<% form_tag :action => "biomek_create" do %>
+
+<table>
+<br />
+  <tr>
+  	<th># Oligos</th>
+	<th>Destination Plate</th>
+	<th>Dest Pos</th>
+	<th>Max Oligos</th>
+  </tr>
+  <tr>
+  	<td><%=h @oligo_wells.size %></td>
+  	<td><%= text_field_tag("dest_params[plate]", @dest_plate, :size => 25) %></td>
+	<td><%= text_field_tag("dest_params[pos]", "P9", :size => 10) %></td>
+	<td><%= text_field_tag("dest_params[max_oligos]", OligoWell::MAX_OLIGOS_FOR_BIOMEK, :size => 6) %></td>
+	<td><%= hidden_field_tag("researcher[id]", @researcher.id) %></td>
+	<td><%= submit_tag "Create BioMek Template"%></td>
+  </tr>
+</table>
+
+<br />
+<table class="border">
+  <tr>
+  	<th>Oligo Name</th>
+	<th>Plate Number</th>
+	<th>Well</th>
+	<th>Volume</th>
+	<th>Dest Well</th>
+	<th>Volume to pipet</th>
+  </tr>
+  
+  <% for well in @oligo_wells %>
+  <tr>
+	<td><%= well.oligo_name %>
+		<%= hidden_field_tag("well[][oligo_name]", well.oligo_name) %></td>
+	<td><%= well.oligo_plate_nr %>
+	    <%= hidden_field_tag("well[][oligo_plate_nr]", well.oligo_plate_nr) %></td>
+	<td><%= well.oligo_well_nr %>
+	    <%= hidden_field_tag("well[][oligo_well_nr]", well.oligo_well_nr) %></td>
+	<td><%= well.well_rem_volume %>
+	    <%= hidden_field_tag("well[][well_rem_volume]", well.well_rem_volume) %></td>
+	<td><%= text_field_tag("well[][dest_well]", well.dest_well, :size => 10) %></td>
+	<td><%= text_field_tag("well[][volume]", @default_vol, :size => 10) %></td>
+  </tr>
+  <% end %>
+  </table>
+<% end %>
+

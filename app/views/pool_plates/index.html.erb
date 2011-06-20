@@ -1,26 +1,22 @@
-<h1>Listing pool_plates</h1>
+<h3>BioMek runs</h3>
 
-<table>
+<table class="border">
   <tr>
-    <th>Pool plate nr</th>
-    <th>Pool well nr</th>
-	<th>Enzyme</th>
-    <th>Volume</th>
+    <th>BioMek run</th>
+	<th>Project</th>
+	<th>Description</th>
   </tr>
 
 <% for pool_plate in @pool_plates %>
   <tr>
-    <td><%=h pool_plate.pool_plate_nr %></td>
-    <td><%=h pool_plate.pool_well_nr %></td>
-	<td><%=h pool_plate.enzyme_code %></td>
-    <td><%=h pool_plate.pool_volume %></td>
-    <td><%= link_to 'Show', pool_plate %></td>
-    <td><%= link_to 'Edit', edit_pool_plate_path(pool_plate) %></td>
-    <td><%= link_to 'Destroy', pool_plate, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to pool_plate.pool_plate_nr, :controller => :pool_wells, :action => :index,
+                                              :pool_plate_id => pool_plate.id %></td>
+    <td><%=h pool_plate.project.project_name if pool_plate.project %></td>
+    <td><%=h pool_plate.pool_plate_desc %></td>
+    <td class='noborder'><%= link_to 'Edit', edit_pool_plate_path(pool_plate) %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
-
-<%= link_to 'New pool_plate', new_pool_plate_path %>
+<%= link_to 'New BioMek run', new_pool_plate_path %> |
+<%= link_to 'Edit BioMek runs', wells_edit_path %>

@@ -1,0 +1,21 @@
+<h3>Synthesized Oligos query - Select parameters</h3>
+
+<% form_tag :action => 'list_inventory', :param_type => 'proj_gene' do %>
+<%= hidden_field_tag("project[project_id]", @project.id)%>
+
+<table>	
+  <tr>
+    <th>Project:</th><td><%=@project.project_name%></td>	
+  </tr>
+  
+  <%= render :partial => 'shared/proj_genes', :locals => {:multiple_versions => true} %>
+ 
+  <tr><td>&nbsp;</td>
+  <tr>
+  	<th>Report Type:</th>
+  	<td><%= radio_button_tag(:rpt_type, 'design', :checked => 'true')%>Designs &nbsp;&nbsp;
+	    <%= radio_button_tag(:rpt_type, 'inventory')%>Inventory </td>
+  </tr>
+</table>
+<p><%= submit_tag "Submit" %></p>
+<%end%>

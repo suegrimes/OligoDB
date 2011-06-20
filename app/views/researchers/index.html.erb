@@ -1,8 +1,9 @@
-<h1>Listing researchers</h1>
+<h3>Listing researchers</h3>
 
-<table>
+<table class="border">
   <tr>
     <th>Researcher name</th>
+	<th>Initials</th>
     <th>Phone number</th>
     <th>Company</th>
   </tr>
@@ -10,15 +11,13 @@
 <% for researcher in @researchers %>
   <tr>
     <td><%=h researcher.researcher_name %></td>
+	<td><%=h researcher.researcher_initials %></td>
     <td><%=h researcher.phone_number %></td>
     <td><%=h researcher.company %></td>
-    <td><%= link_to 'Show', researcher %></td>
     <td><%= link_to 'Edit', edit_researcher_path(researcher) %></td>
-    <td><%= link_to 'Destroy', researcher, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Delete', researcher, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
-
-<br />
 
 <%= link_to 'New researcher', new_researcher_path %>

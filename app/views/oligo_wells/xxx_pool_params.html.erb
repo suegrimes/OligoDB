@@ -1,0 +1,33 @@
+<h3>Select BioMek parameters </h3>
+
+<table>
+  <% form_tag :action => 'setgenevol' do %>
+ 
+    <%= render :partial => 'shared/researcher_select' %> 
+	
+	<tr>
+	  <td></td>
+	  <td colspan=5, class="notes"> <br>Selecting project will generate BioMek template for all genes for that project;<br /> 
+	  Selecting project <b>and</b> gene(s) will generate BioMek template for selected genes <b>in addition to</b>
+	  all project genes</td>
+    </tr>
+	
+    <%= render :partial => 'shared/project_select' %>
+	
+	<%= render :partial => 'shared/gene_select' %>
+    <tr>&nbsp;</tr>
+    
+    <tr>
+	  <th>Enzymes:</th>
+	  <td><%= collection_select(:enzyme, :enzyme_code, @enzymes, :enzyme_code, :enzyme_code,
+                               {:include_blank => '(All)'}, {:size => 7, :multiple => :multiple}) %> </td>
+	  <td>
+	    <b>Default volume:&nbsp; </b>
+	    <%= text_field_tag :default_vol, 5 %>
+	  </td>
+    </tr>
+</table>
+
+<p><%= submit_tag "Submit" %></p>
+</form>
+<%end%>

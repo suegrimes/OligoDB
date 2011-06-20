@@ -1,25 +1,34 @@
-<h1>Listing aliquots</h1>
+<h3>
+<% if @pool_well %>
+Details for BioMek: <%= @pool_well.pool_plate_nr %> / <%= @pool_well.pool_well_nr %>
+<% else %>
+Pool Details
+<% end %>
+(<%= @aliquots.size %> oligos)
+</h3>
 
-<table>
+<table class="border">
   <tr>
-    <th>Plate from</th>
-	<th>Well from</th>
-    <th>Plate to</th>
-	<th>Well to</th>
-	<th>Volume</th>
+  	<th>Oligo name</th>
+	<th>Ampl Length</th>
+    <th>Source plate</th>
+	<th>Well</th>
+	<th>ul to BioMek</th>
+    <th>BioMek plate</th>
+	<th>Well</th>
   </tr>
 
 <% for aliquot in @aliquots %>
   <tr>
+  	<td><%=h aliquot.oligo_well.oligo_name %></td>
+	<td><%=h aliquot.oligo_well.synth_oligo.amplicon_length %></td>
     <td><%=h aliquot.plate_from %></td>
-	<td><%=h aliquot.well_from %></td>
-    <td><%=h aliquot.plate_to %></td>
-	<td><%=h aliquot.well_to %></td>
+	<td align=center><%=h aliquot.well_from %></td>
 	<td><%=h aliquot.volume_pipetted %></td>
+    <td><%=h aliquot.plate_to %></td>
+	<td align=center><%=h aliquot.well_to %></td>
   </tr>
 <% end %>
 </table>
-
-<br />
 
 <%= link_to 'Back', :back %>

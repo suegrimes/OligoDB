@@ -1,0 +1,14 @@
+<h3>Select BioMek parameters </h3>
+
+<table>
+  <% form_tag :action => 'biomek_params' do %>
+ 
+    <%= render :partial => 'shared/researcher_select' %> 
+	
+    <%= render :partial => 'shared/project_select_one' %>
+	
+</table>
+
+<p><%= submit_tag "Submit" %></p>
+</form>
+<%end%>

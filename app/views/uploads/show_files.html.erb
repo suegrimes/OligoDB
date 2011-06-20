@@ -1,0 +1,21 @@
+<% debug(@upload_file)%>
+<% debug(@mimetype)%>
+
+<h3>Uploaded <%= @filetype %> File Listing</h3>
+
+<table class="border">
+
+<% for upload_file in @upload_file %>
+  <tr>
+  	<% for upload_col in upload_file %>
+  	  <td><%= upload_col %></td>
+	<% end %>
+  </tr>
+<% end %>
+
+</table>
+
+<br />
+
+<%= link_to 'Back', :back %>
+

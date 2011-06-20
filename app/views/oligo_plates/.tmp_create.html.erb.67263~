@@ -1,5 +1,0 @@
-<p> Params <% params.inspect %></p>
-
-<p> Source Plate <% @source_plate.inspect %></p>
-
-<p> Copy file successfully created <p>

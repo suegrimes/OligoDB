@@ -1,0 +1,24 @@
+<h1>Editing target_region</h1>
+
+<% form_for(@target_region) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :gene_roi %><br />
+    <%= f.text_field :gene_roi %>
+  </p>
+  <p>
+    <%= f.label :fold_coverage %><br />
+    <%= f.text_field :fold_coverage %>
+  </p>
+  <p>
+    <%= f.label :target_seq_clean %><br />
+    <%= f.text_area :target_seq_clean %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @target_region %> |
+<%= link_to 'Back', target_regions_path %>

@@ -1,0 +1,5 @@
+<tr>
+  <th>Researcher:</th>
+  <td><%= collection_select(:researcher, :researcher_id, @rnames, :id, :researcher_name,
+                                     {}, {:size => 3})%></td>
+</tr>

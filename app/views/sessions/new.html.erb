@@ -1,3 +1,8 @@
+<p>If you do not have a login id for the SGTC OligoDB, please 
+<%= button_to 'Sign up', :controller => :users, :action => :new %></p>
+<br>
+<br>
+<p>Otherwise, enter your login and password below </p>
 <% form_tag session_path do -%>
 <p><label for="login">Login</label><br/>
 <%= text_field_tag 'login' %></p>
@@ -9,6 +14,5 @@
 <p><label for="remember_me">Remember me:</label>
 <%= check_box_tag 'remember_me' %></p>
 -->
-
 <p><%= submit_tag 'Log in' %></p>
 <% end -%>

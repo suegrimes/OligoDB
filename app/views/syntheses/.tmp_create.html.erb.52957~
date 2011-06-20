@@ -1,2 +1,0 @@
-
-<div style='color:green'> <%= flash[:notice]%></div>

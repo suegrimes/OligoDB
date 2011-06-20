@@ -1,0 +1,30 @@
+<table>
+  <tr>
+  	<th>Oligo name</th>
+	<th>Ampl Length</th>
+	<% if @pool %>
+	<th>Subpool</th>
+	<th>Conc in Pool</th>
+	<% end %>
+    <th>Source plate</th>
+	<th>Well</th>
+	<th>Volume</th>
+    <th>BioMek run</th>
+	<th>Well</th>
+  </tr>
+
+<% for aliquot in @aliquots %>
+  <tr>
+  	<td><%=h aliquot.oligo_well.oligo_name %></td>
+	<% if @pool %>
+	<td><%=h aliquot.pool_well.description %></td>
+	<td><%=h aliquot.pool_well.subpools[0].oligo_conc_nm %></td>
+	<% end %>
+    <td><%=h aliquot.plate_from %></td>
+	<td align=center><%=h aliquot.well_from %></td>
+	<td><%=h aliquot.volume_pipetted %></td>
+    <td><%=h aliquot.plate_to %></td>
+	<td align=center><%=h aliquot.well_to %></td>
+  </tr>
+<% end %>
+</table>

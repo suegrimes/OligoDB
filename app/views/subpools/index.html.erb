@@ -1,0 +1,33 @@
+<h3>Listing Subpools/BioMek</h3>
+
+<table class="border">
+  <tr>
+  	<th>Pool</th>
+    <th>Subpool</th>
+    <th>Enzyme</th>
+	<th>BioMek run</th>
+	<th>BioMek well</th>
+	<th># Oligos</th>
+	<th>ul to subpool(w)</th>
+    <th>ul to subpool(s)</th>
+	<th>Oligo conc nM (w)</th>
+	<th>Oligo conc nM (s)</th>
+  </tr>
+
+<% for subpool in @subpools %>
+  <tr>
+  	<td><%=h subpool.pool.pool_name %></td>
+	<td><%=h subpool.pool_well.description %></td>
+    <td><%=h subpool.pool_well.enzyme_code %></td>
+	<td><%=h subpool.pool_well.pool_plate_nr %></td>
+	<td><%=h subpool.pool_well.pool_well_nr %></td>
+	<td><%=h subpool.pool_well.nr_oligos %></td> 
+	<td><%=h subpool.pool_well.ul_to_pool %></td>
+	<td><%=h subpool.ul_to_pool %></td>
+	<td><%=h subpool.pool_well.oligo_concentration %></td>
+	<td><%=h subpool.oligo_conc_nm %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Edit all subpools', subpools_edit_path %>

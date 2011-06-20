@@ -1,0 +1,29 @@
+<h3>Synthesis Orders</h3>
+
+<table class="border">
+  <tr>
+    <th>File Name</th>
+	<th>Researcher</th>
+	<th>Date created</th>
+  </tr>
+
+<% for synth_file in @synth_files %>
+  <tr>
+  	<td><%= link_to synth_file.created_file, :action => :show_files,
+                                             :created_file_id => synth_file.id %></td>
+	<td><%=h synth_file.researcher.researcher_name %></td>
+	<td><%=h synth_file.created_at.strftime("%m-%d-%Y %I:%M%p") %></td>
+	<td><%= link_to 'Download File', {:action => 'export_file', :id => synth_file.id}, 
+                                     {:confirm => 'Download Synthesis Order?'} %></td>
+	<% if current_user && current_user.has_role?("admin") %>
+	  <td class="noborder"><%= link_to 'Delete File', :id => synth_file.id, 
+                                                      :action=>'delete_file', 
+                                                      :confirm => 'Are you sure?' %></td>
+	<% end %>	
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New synthesis order', synth_order_path %>

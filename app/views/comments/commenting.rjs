@@ -1,0 +1,2 @@
+page[:comment_see].toggle
+page[:commenting].toggle

@@ -1,0 +1,34 @@
+
+<h3>Oligo <%= @rpt_type %> query - Select parameters</h3>
+
+<% form_tag :action=> 'list_selected'  do %>
+<%= hidden_field_tag(:rpt_type, @rpt_type)%>
+
+<table>	
+  <tr>
+  	<div id="projdiv">
+    <th>Project:</th>
+    <td><%= collection_select(:project, :project_id, @projects, :id, :project_name,
+                         {:include_blank => false},
+                         {:onchange => remote_function(
+                                       :url => {:action => 'get_genes'},
+                                       :with => "'project_id=' + this.value")} ) %></td>
+    </div>
+	</tr>  
+
+  <tr>
+  	<th>Genes:</th>
+  	<div id="genediv">
+  	<td>Genes should go here</td>
+    </div>
+  </tr>
+  
+</table>
+
+<br />
+<br />
+
+<p><%= submit_tag "Submit" %></p>
+<%end%>
+<p> -OR- <br><br>
+Click <%= link_to 'here', :action => 'zip_download' %> to download zipped file of oligos for entire exonome </p>

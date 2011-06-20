@@ -1,0 +1,9 @@
+<li><%= link_to_function "Synthesize Oligos", toggle_div(:synthesissubmenu) %></li>	
+      <div id="synthesissubmenu", style="display:none">
+      	 <ul>
+	     <li><%= link_to 'Create Synthesis Order', synth_order_path %></li>
+		 <li><%= link_to 'List Synthesis Orders', synth_files_path %></li>
+	     <li><%= link_to 'Load Synthesized Oligos', {:controller=>'uploads', :action=>'index', 
+                         :filetype => 'Synthesis'}  %></li>
+		 </ul>
+      </div>

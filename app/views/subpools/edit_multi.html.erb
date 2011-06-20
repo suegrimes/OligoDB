@@ -1,0 +1,32 @@
+<h3>Edit SubPools</h3>
+
+<table class="border">
+  <tr>
+  	<th>Pool</th>
+    <th>Subpool</th>
+    <th>Enzyme</th>
+	<th>BioMek run</th>
+	<th>BioMek well</th>
+	<th># Oligos</th>
+    <th>ul to pool</th>
+	<th>Oligo conc nM</th>
+  </tr>
+  
+  <% form_tag(:action => 'upd_multi') do %>
+    <% for @subpool in @subpools do %>
+	    <tr>
+	      <td><%=h @subpool.pool.pool_name %></td>
+	      <td><%=h @subpool.pool_well.description %></td>
+          <td><%=h @subpool.pool_well.enzyme_code %></td>
+	      <td><%=h @subpool.pool_well.pool_plate_nr %></td>
+	      <td><%=h @subpool.pool_well.pool_well_nr %></td>
+	      <td><%=h @subpool.pool_well.nr_oligos %></td> 
+	      <td><%=h @subpool.ul_to_pool %></td>
+	      <td><%= text_field("subpool[]", 'oligo_conc_nm', :size => 10) %></td>	
+		</tr>
+	<% end %>
+	<%= submit_tag "Update SubPools" %>
+  <% end %>
+</table>
+
+<%= link_to 'Show All SubPools', subpools_url %>

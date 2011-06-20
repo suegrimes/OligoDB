@@ -1,0 +1,14 @@
+<!--<%= debug(params) %>
+<%= debug(@filetype) %>-->
+<h1>Help Topics</h1>
+<br>
+<table>
+  <tr>
+    <td><%= link_to 'Oligo Design file format', :action => 'oligodesign' %></td></tr>
+  <tr>	
+	<td><%= link_to 'Oligo Synthesis file format', :action => 'oligosynthesis' %></td></tr>
+  <tr>
+    <td><%= link_to 'BioMec upload file format', :action => 'biomecfile' %></td></tr>
+</table>
+<br>
+<%= link_to 'Back', :back %>

@@ -1,12 +1,37 @@
-<h1>Editing pool_well</h1>
+<h3>Editing BioMek well</h3>
 
 <% form_for(@pool_well) do |f| %>
   <%= f.error_messages %>
-
-  <p>
+  
+  <table class="border">
+  	<tr>
+      <th>Pool Plate: </th>
+	  <td><%=h @pool_well.pool_plate_nr %></td>
+      <th>Well: </th>
+	  <td><%=h @pool_well.pool_well_nr %></td>
+	</tr>
+	<tr>
+      <th>Enzyme:</th>
+	  <td><%=h @pool_well.enzyme_code %> </td>
+    </tr>
+	<tr>
+      <th>Description:</th>
+	  <td><%= f.text_field :description %> </td>
+	</tr>
+	<tr> 
+	  <th>Pipette to pool (ul):</th>
+	  <td><%= f.text_field :ul_to_pool %> </td>
+	</tr>
+	<tr>&nbsp</tr>
+	
+    <tr>
+      <th><%= f.label :comments %> </th>
+	  <td colspan=4> <%= f.text_field :comments, :size => 50 %></td>
+    </tr>
+	</table>
+  
     <%= f.submit "Update" %>
-  </p>
-<% end %>
+  <% end %>
+  
 
-<%= link_to 'Show', @pool_well %> |
 <%= link_to 'Back', pool_wells_path %>

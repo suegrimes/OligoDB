@@ -1,19 +1,30 @@
-<h1>Listing oligo_plates</h1>
+<h3>Oligo Plates</h3>
 
-<table>
+<p><%= link_to 'Edit Plate Details', :action => 'edit_multi', :method => :get %></p>
+
+<table class="border">
 	<tr>
-		<th>Plate Nr</th>
+		<th>Synth Order</th>
 		<th>Date Loaded</th>
+		<% 6.times do %>
+		  <th>Plate</th>
+		  <th>Room/Shelf/Bin/Box</th>
+		<% end %>
     </tr>
+	
+  <% last_plate_num = nil %>
+  
   <% for plate in @oligo_plates %>
+    <% if plate.oligo_plate_num != last_plate_num then %>
     <tr>
-	    <td><%= link_to plate.oligo_plate_nr, :controller => "oligo_wells",
+		<td><%=h plate.synth_plate_nr %></td>
+		<td><%=h plate.created_at.strftime("%m-%d-%Y %I:%M%p") %></td>
+	<% last_plate_num = plate.oligo_plate_num %>
+	<% end %>
+		
+		<td><%= link_to plate.oligo_plate_nr, :controller => "oligo_wells",
                        :action => "index", :plate_id => plate.id  %></td>
-		<td><%= plate.created_at %></td>
-    </tr>
+		<td><%=h plate.storage_location.location_string  if plate.storage_location %></td>
   <% end %>
+  
 </table>
-
-
-
-

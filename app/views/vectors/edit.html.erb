@@ -1,0 +1,11 @@
+<h3>Editing vector</h3>
+
+<% form_for(@vector) do |f| %>
+  <%= f.error_messages %>
+
+  <%= render :partial => 'vector', :locals => {:f => f} %>
+  
+  <%= f.submit "Update" %>
+<% end %>
+
+<%= link_to 'Back', vectors_path %>

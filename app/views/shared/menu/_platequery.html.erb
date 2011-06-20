@@ -1,0 +1,9 @@
+<li><%= link_to_function "Query Plates/Pools", toggle_div(:inventorysubmenu) %></li>	
+      <div id="inventorysubmenu", style="display:none">
+      	 <ul>  
+	     <li><%= link_to 'Query Low Inventory', {:controller => 'oligo_wells', :action => 'selectthreshold'} %></li>
+		 <li><%= link_to 'Query Oligo Plates', {:controller=>'oligo_plates', :action=>'index'} %></li>
+		 <li><%= link_to 'Query BioMek Runs', {:controller=>'pool_plates', :action=>'index'} %></li>
+		 <li><%= link_to 'Query Pools', {:controller=>'pools', :action=>'index'} %></li>
+		 </ul>
+      </div>

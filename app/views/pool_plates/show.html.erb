@@ -4,8 +4,13 @@
 </p>
 
 <p>
-  <b>Pool well nr:</b>
-  <%=h @pool_plate.pool_well_nr %>
+  <b>Project:</b>
+  <%=h @pool_plate.project.project_name if @pool_plate.project %>
+</p>
+
+<p>
+  <b>Pool plate descr:</b>
+  <%=h @pool_plate.pool_plate_desc %>
 </p>
 
 

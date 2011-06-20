@@ -1,8 +1,17 @@
 class PoolWellsController < ApplicationController
+  require_role "stanford"
+  
   # GET /pool_wells
   # GET /pool_wells.xml
   def index
-    @pool_wells = PoolWell.find(:all)
+    @condition_array = Array.new
+    if params[:pool_plate_id]
+      @condition_array = ["pool_plate_id = ?", params[:pool_plate_id]]
+    end
+    
+    @pool_wells = PoolWell.find(:all,
+                                :conditions => @condition_array,
+                                :order => "pool_plate_nr, pool_well_nr")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -36,6 +45,22 @@ class PoolWellsController < ApplicationController
   def edit
     @pool_well = PoolWell.find(params[:id])
   end
+  
+  def edit_multi
+    @pool_wells = PoolWell.find(:all, :order => "pool_plate_nr, pool_well_nr")
+    @projects = Project.find(:all)
+    
+    respond_to do |format|
+      format.html # edit_multi.html.erb
+      format.xml  { render :xml => @pool_wells }
+    end
+  end
+  
+  def upd_multi
+    PoolWell.update(params[:pool_well].keys, params[:pool_well].values)
+    flash[:notice] = 'BioMek well(s) successfully updated'
+    redirect_to(pool_wells_url)
+  end
 
   # POST /pool_wells
   # POST /pool_wells.xml
@@ -44,7 +69,7 @@ class PoolWellsController < ApplicationController
 
     respond_to do |format|
       if @pool_well.save
-        flash[:notice] = 'PoolWell was successfully created.'
+        flash[:notice] = 'BioMek well was successfully created.'
         format.html { redirect_to(@pool_well) }
         format.xml  { render :xml => @pool_well, :status => :created, :location => @pool_well }
       else
@@ -61,8 +86,8 @@ class PoolWellsController < ApplicationController
 
     respond_to do |format|
       if @pool_well.update_attributes(params[:pool_well])
-        flash[:notice] = 'PoolWell was successfully updated.'
-        format.html { redirect_to(@pool_well) }
+        flash[:notice] = 'BioMek well(s) successfully updated.'
+        format.html { redirect_to(pool_wells_url) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

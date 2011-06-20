@@ -1,0 +1,10 @@
+<div class="gene">
+  <% new_or_existing = project_gene.new_record? ? 'new' : 'existing' %>
+  <% prefix = "project[#{new_or_existing}_gene_attributes][]" %>
+  
+  <% fields_for prefix, project_gene do |gform| %>
+      <b>Gene:</b> <%= gform.text_field(:gene_code, :size => 25) %>
+	  <%= link_to_function "remove", "$(this).up('.gene').remove()" %>
+      <br/>
+  <% end -%>
+</div>

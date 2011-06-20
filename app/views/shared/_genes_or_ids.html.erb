@@ -1,0 +1,21 @@
+<% multiple_versions ||= false %>
+<% if multiple_versions == true %>
+  <%= render :partial => 'shared/version_select_multi' %>
+<% else %>
+  <%= render :partial => 'shared/version_select' %>
+<% end %>
+<tr><td>&nbsp;</td></tr>		  
+  
+<tr>
+  <th>Genes:</th>
+  <td colspan=2><%= text_area_tag(:genes, @genes, :cols => 20, :rows => 8) %> </td>
+  <th>Enzymes:</th>
+  <td><%= select(:enzyme, :enzyme_code, OligoDesign::ENZYMES_WO_GAPFILL,
+                {:include_blank => '(All)'}, {:size => 5, :multiple => :multiple}) %> </td>
+</tr>
+<tr><td class="notes">OR</td></tr>
+  
+<tr>
+  <th>Oligo IDs:</th>
+  <td><%= text_area_tag(:oligo_ids, @oligo_ids, :cols => 20, :rows => 8) %> </td>
+</tr>

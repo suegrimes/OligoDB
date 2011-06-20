@@ -1,0 +1,42 @@
+<h3>Oligo Inventory</h3>
+
+<% form_tag :action => "export_inventory", :rpt_type => 'inventory' do %>
+  <p><%= @synth_oligos.size%> oligos selected <%= submit_tag "Export Oligos to Excel" -%></p>
+  
+<table class="border">
+  <tr>
+	<th> Oligo name  </th>
+	<th> Annot </th>
+	<th> Ver/Build </th>
+    <th> Working Plate </th>
+	<th> Room/Shelf/Bin/Box </th>
+	<th> Well </th>
+	<th> Conc (um) </th>
+	<th> Rem Vol </th>
+	<th> Initial Vol </th>
+  </tr>
+
+<% for synth_oligo in @synth_oligos do %>
+	<tr>
+	  <td><%=link_to synth_oligo.oligo_name, synth_oligo %></td>
+	  <td><%= h synth_oligo.annotation_codes %></td>
+	  <td><%=h version_name(synth_oligo.version_id) %></td>
+	  <td><%=h synth_oligo.oligo_wells[0].oligo_plate_nr%> </td>
+	  <td><% if synth_oligo.oligo_wells[0].oligo_plate.storage_location %>
+	        <%=h synth_oligo.oligo_wells[0].oligo_plate.storage_location.location_string %>
+		  <% end %>
+	  </td>
+	  <td align=center><%=h synth_oligo.oligo_wells[0].oligo_well_nr%></td>
+	  <td><%=h synth_oligo.oligo_wells[0].oligo_plate.oligo_conc_um %></td>
+	  <td><%=h synth_oligo.oligo_wells[0].well_rem_volume%></td>
+      <td><%=h synth_oligo.oligo_wells[0].well_initial_volume%></td>
+	  <td width=0><%= hidden_field_tag("export_id[]", synth_oligo.id)%>
+	</tr>
+  <% end %>
+  <% end %>
+</table>
+
+<br />
+<td><%= link_to 'New search', :action  => 'select_project' %></td>
+
+

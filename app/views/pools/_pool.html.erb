@@ -1,0 +1,27 @@
+  <tr>
+	<th>Pool Name:</th>   <td><%=f.text_field :pool_name %> </td>
+  </tr>
+  <tr>
+  	<th>Description:</th> <td><%=f.text_field :pool_description %></td>
+  </tr>
+  <tr>
+    <th>Room/Shelf/Bin/Box:</th> 
+	<td><%=f.collection_select(:storage_location_id, @storage_locations, :id, :location_string,
+                               {:include_blank => '(Select location)'}) %></td>
+  </tr>
+  <tr><td>&nbsp;</td></tr>
+  <tr>
+  	<th>Project:</th>
+	<td><%=f.collection_select(:project_id, @projects, :id, :project_name,
+                              {:include_blank => 'N/A'}) %></td>
+  </tr>
+  <tr>
+  	<th>Enzyme:</th>
+	<td><%= f.collection_select(:enzyme_code, @enzymes_for_select, 
+                                              :label, :value,
+                                             {:include_blank => 'All or N/A'}) %></td>
+  </tr>
+  <tr>
+  	<th>Oligo Conc(uM) in Source Plates</th>
+	<td><%= f.select(:source_conc_um, OligoPlate::OLIGO_UM) %></td>
+  </tr>

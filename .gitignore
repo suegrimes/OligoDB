@@ -1,0 +1,10 @@
+log
+tmp
+db/*.sqlite3
+db/data.yml
+public/system/*
+public/*.zip
+public/javascripts/all.js
+config/database.yml
+script/*
+test/*

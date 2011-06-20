@@ -1,0 +1,11 @@
+<li> <%= link_to_function "Admin", toggle_div(:adminsubmenu) %></li>
+  <div id="adminsubmenu", style="display:none">
+    <ul>
+	<li><%= link_to 'Projects', {:controller=>'projects', :action=>'index'} %></li>
+    <li><%= link_to 'Researchers', {:controller=>'researchers', :action=>'index'} %></li> 
+	<li><%= link_to 'Storage Locations', {:controller=>'storage_locations', :action=>'index'} %></li>
+	<% if current_user && current_user.has_role?("admin")%>
+	<li><%= link_to 'Users', {:controller=>'users', :action=>'index'} %></li>
+	<% end %>
+	</ul>
+  </div>

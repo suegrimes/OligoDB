@@ -1,0 +1,28 @@
+<h3>Select BioMek parameters </h3>
+
+  <% form_tag :action => 'biomek_display' do %>
+  
+    <%= hidden_field_tag("project[project_id]", @project.id) %>
+	<%= hidden_field_tag("researcher[researcher_id]", @researcher.id) %>
+	
+  <table class="border">
+  	<tr>
+  	  <th>Project:</th>
+	  <td><%= @project.project_name %></td>
+	</tr>
+	<tr>
+	  <th>Researcher:</th>
+	  <td><%= @researcher.researcher_name%></td>
+	</tr>
+	<%= render :partial => 'shared/proj_genes', 
+                           :locals => {:multiple_versions => true, :coll_obj => 'synth_oligo'} %>
+    <tr>&nbsp;</tr>
+    
+	<tr>
+	  <th>Default volume:&nbsp; </th>
+	  <td><%= text_field_tag :default_vol, 5 %></td>
+    </tr>
+  </table>
+
+  <p><%= submit_tag "Submit" %></p>
+<%end%>

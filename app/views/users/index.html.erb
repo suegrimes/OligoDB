@@ -1,0 +1,20 @@
+<table class="border">
+  <tr>
+    <th>Login</th>
+	<th>Email</th>
+	<th>Roles</th>
+  </tr>
+  <% for user in @users do %>
+  <tr>
+  	<td><%= link_to user.login, edit_user_path(user) %> </td>
+	<td><%=h user.email %> </td>
+	<td>
+	  <% for role in user.roles do %>
+	    <%=h role.name %>&nbsp;
+	  <% end %>
+	</td>
+	<td><%= link_to 'Delete', user, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+  <% end %>
+</table>
+

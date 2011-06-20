@@ -1,0 +1,18 @@
+  <table class="border">
+  	<tr>
+      <th><%= f.label :pool_plate_nr, 'BioMek Run' %></th>
+      <td><%= f.text_field :pool_plate_nr %></td>
+    </tr>
+  
+    <tr>
+	<th>Project</th>
+	<td><%=f.collection_select(:project_id, @projects, :id, :project_name,
+                              {:include_blank => 'N/A'}) %></td>
+	</tr>
+	
+    <tr>
+      <th><%= f.label :pool_plate_desc, 'Description' %></th>
+      <td><%= f.text_field :pool_plate_desc %></td>
+    </tr>
+  </table>
+  

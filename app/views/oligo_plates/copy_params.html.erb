@@ -1,0 +1,38 @@
+<h3>Create copy plates from <%= @source_plate.oligo_plate_nr %></h3>
+
+<p>Min vol in <%=h @source_plate.oligo_plate_nr%> wells: <%=h @source_plate.min_vol %> at <%=h @source_plate.oligo_conc_um %>uM</p>
+
+<table class="border">
+  <% form_tag :action => 'create_plates' do %>
+  <tr>
+  	<th>Copy Plate</th>
+	<th>Volume</th>
+	<th>Oligo Conc(uM)</th>
+	<th>TE/TB Conc</th>
+  </tr>
+  
+  <%= hidden_field_tag('source_plate_id', @source_plate.id)%>
+  <%= hidden_field_tag('copy_code', @copy_code)%>
+  <%= hidden_field_tag('nr_copies', @nr_copies)%>
+  <%= hidden_field_tag('total_vol_c', @total_vol_c)%>
+  <%= hidden_field_tag('total_vol_s', @total_vol_s)%>
+  
+  <% for plate_nr in @first_num.to_i...(@first_num.to_i + @nr_copies.to_i) do %>
+    <% if @total_vol_c == 100 && @nr_copies == 3
+          @plate_vol = ((plate_nr + 2) % 3 == 0? 40 : 30) 
+       else
+          @plate_vol = (@total_vol_c.to_i/@nr_copies.to_i)
+       end %>
+  <tr>
+    <td><%= text_field_tag('copy_plate_nr[]', @copy_plate + plate_nr.to_s, :readonly => true) %></td>
+	<td><%= text_field_tag('vol[]', @plate_vol, :size => 10) %></td>
+	<td><%= text_field_tag('oligo_conc[]', @copy_conc, :readonly => true )%></td>
+	<td><%= text_field_tag('te_conc[]', 0.1) %></td>
+  </tr>  
+  <% end %>
+</table>
+
+<p><%= submit_tag "Create Plates" %></p>
+<%end%>
+
+<%= link_to 'Back', :back %> | <%= link_to 'List Plates', oligo_plates_path, :platenum => 8 %>

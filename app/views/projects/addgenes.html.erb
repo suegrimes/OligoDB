@@ -1,0 +1,16 @@
+<b>Please add genes for project:&nbsp;<%= @project.project_name %></b>
+
+  <% form_tag :action=> 'savegenes'  do %>
+  
+  <table>  
+    <%= hidden_field_tag(:project_id, @project.id)%>
+    <%= render :partial => 'shared/gene_select' %>
+  </table>
+  
+  <%= submit_tag "Submit" %>
+<%end%>
+
+
+<br />
+
+<%= link_to 'Back', :back %>

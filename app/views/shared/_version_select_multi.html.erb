@@ -1,0 +1,7 @@
+<tr>
+  <th>Build/Version:</th>
+  <td colspan=3><%= collection_select(:version, :id, @versions, :id, :version_id_flagged_name,
+                           {:include_blank => '(All versions)'},
+                           {:size => 5, :multiple => :multiple}) %>
+     <span class="notes">'*' indicates current production version</span></td>
+</tr>

@@ -1,0 +1,21 @@
+<p>
+  <b>Gene roi:</b>
+  <%=h @target_region.gene_roi %>
+</p>
+
+<p>
+  <b>Fold coverage:</b>
+  <%=h @target_region.fold_coverage %>
+</p>
+
+<p>
+  <b>Target seq clean:</b>
+  <%=h @target_region.target_seq_clean %>
+</p>
+
+<% for ccds in @target_region.ccds %>
+  <p><b>ccds code: </b><span class='hardbreak'><%=h ccds.ccds_code %></span></p>
+<% end %>
+
+<%= link_to 'Edit', edit_target_region_path(@target_region) %> |
+<%= link_to 'Back', target_regions_path %>

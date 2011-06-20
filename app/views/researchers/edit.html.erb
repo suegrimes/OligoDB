@@ -1,24 +1,11 @@
-<h1>Editing researcher</h1>
+<h3>Editing researcher</h3>
 
 <% form_for(@researcher) do |f| %>
   <%= f.error_messages %>
 
-  <p>
-    <%= f.label :researcher_name %><br />
-    <%= f.text_field :researcher_name %>
-  </p>
-  <p>
-    <%= f.label :phone_number %><br />
-    <%= f.text_field :phone_number %>
-  </p>
-  <p>
-    <%= f.label :company %><br />
-    <%= f.text_field :company %>
-  </p>
-  <p>
-    <%= f.submit "Update" %>
-  </p>
+  <%= render :partial => 'researcher', :locals => {:f => f} %>
+  
+  <%= f.submit "Update" %>
 <% end %>
 
-<%= link_to 'Show', @researcher %> |
 <%= link_to 'Back', researchers_path %>

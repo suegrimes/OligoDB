@@ -1,0 +1,34 @@
+
+<table>
+  <tr>
+	<th> Oligo name  </th>
+	<th> Version  </th>
+	<th> Annot </th>
+	<% for i in 1..3 do %>
+      <th> <%= (i == 1 ? 'Working ' : '') %> Plate </th>
+	  <th> Room/Shelf/Bin/Box </th>
+	  <th> Well </th>
+	  <th> Conc(um)</th>
+	  <th> Rem Vol </th>
+	  <th> Initial Vol </th>
+	<% end %>
+  </tr>
+
+<% for oligo in @synth_oligos do %>
+	<tr>
+	  <td><%=h oligo.oligo_name %></td>
+	  <td><%=h version_name(oligo.version_id) %></td>
+	  <td><%=h oligo.annotation_codes %></td>
+	  
+	  <% for well in oligo.oligo_wells do %>
+	      <td><%=h well.oligo_plate_nr%> </td>
+		  <td><% if well.oligo_plate.storage_location %><%=h well.oligo_plate.storage_location.location_string %><% end %></td>
+	      <td align=center><%=h well.oligo_well_nr%></td>
+		  <td><%=h well.oligo_plate.oligo_conc_um %></td>
+	      <td><%=h well.well_rem_volume%></td>
+		  <td><%=h well.well_initial_volume%></td>
+		<% end %>
+	</tr>
+  </tr>
+<% end %>
+</table>

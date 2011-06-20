@@ -1,0 +1,28 @@
+v52a	05/24/2010	Bug fix for synth order create (due to refactor v51), move synth order methods from synth_oligos to synth_orders
+v52	05/20/2010	Biomek_runs controller/views; BioMek/Pool many<->many relationship; concentration calc; Additional pool export flds
+v51	04/15/2010	Refactor oligo_designs, synth_oligos.  Add synth_orders (split out from oligo_designs).
+v50a	02/03/2010	New tables: vectors, and flag_defs (add controller/model/views).  zip file for entire exome designs updated.
+v50	02/03/2010	Add new oligo_annotations table and other_annotations field; revise oligo_designs/syntho oligos show view
+v49	12/09/2009	Synthesis load: set plate_depleted_flag; BioMek template: max # oligos, fix P9 bug; C plates: 40ul in C1 (vs C3)
+v48	11/24/2009	Add source_conc_um to pools table, revise oligo_concentration calculation for pools, revise biomek dest pos
+v47	11/24/2009	Modify BioMek load to update nr_oligos, revise pool/show, update synthesis load (only S plate)
+v46	11/10/2009	Add link to BioMek run query, bug fix for selecting biomek wells for pools
+v45	10/21/2009	Implement new copy plate scheme
+v44	10/20/2009	Select oligo ids for biomek, improve biomek template efficiency (sql), begin new copy plate scheme
+v43	10/14/2009	Revise inventory queries and design query/export, select version for biomek template 
+v42	9/30/2009	Expanded fields for oligo design export, bug fix for synth oligos load (pilot oligos)
+v41	9/16/2009	Miscellaneous
+v40	9/16/2009	Enhancements to allow upload of oligo designs (ie with relaxed MatLab parameters).
+v39	9/8/2009	Bug fixes, enhancements.  Allow selection of multiple version ids for inventory query
+v38	9/2/2009	Bug fixes, enhancements.  Specify version when defining project; use OligoExtensions module
+v37	9/1/2009	Additional design version selection, modified pools module (conc. calc, etc)
+v35-dev	8/21/2009	Changes to inventory parameter selection; various refactoring
+v34	8/20/2009	Bug fixes (Query params, Pools)
+v31-dev	8/5/2009	Rev0 of new pools module - working version
+v30-dev	8/3/2009	Rev0 of change to query params - working version
+v29-dev	7/31/2009	Changes to query parameter selection
+v28	7/20/2009	Created & uploaded files moved to OligoFiles directory
+v27	7/6/2009	Fix for upload file type, misc fixes
+v26	6/22/2009	Refactored oligo_designs, synth_oligos; added id parameters
+v25	6/13/2009	Miscellaneous fixes
+v24	6/10/2009	Miscellaneous fixes

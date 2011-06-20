@@ -1,0 +1,14 @@
+<h3>Select oligo plate </h3>
+
+<table>
+<% form_tag :action => 'get_wellsltvolume' do %>
+  <tr>
+    <th>Volume (ul):</th>
+	<td><%= text_field_tag :thresholdvol, @vol %></td>
+  </tr>
+</table>
+
+<%= submit_tag "Submit" %>
+<% end %>
+</form>
+</table>

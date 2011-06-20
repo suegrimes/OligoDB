@@ -1,0 +1,39 @@
+<h3>Synthesized Oligos - Designs</h3>
+
+<% form_tag :action => "export_inventory", :rpt_type => 'design' do %>
+<p><%=h @synth_oligos.size %> oligos selected <%= submit_tag "Export Oligos" -%></p>
+
+<table class="border">
+  <tr>
+  	<th>ID</th>
+	<th>Oligo Name</th>
+	<th>Chromosome</th>
+	<th>Amplicon Start</th>
+	<th>Length</th>
+	<th>Flags</th>
+	<th>Annot</th>
+	<th>5prime Selector</th>
+	<th>3prime Selector</th>
+	<th>Polarity</th>
+	<th>Design Ver</th>	
+  </tr>
+	
+<% for synth_oligo in @synth_oligos %>
+  <tr>
+  	<td><%=h synth_oligo.oligo_id %></td>
+	<td><%= link_to synth_oligo.oligo_name, synth_oligo %></td>
+	<td><%=h synth_oligo.chromosome_nr %></td>
+	<td><%=h synth_oligo.amplicon_chr_start_pos %></td>
+	<td align=center><%=h synth_oligo.amplicon_length %></td>
+	<td><%= h synth_oligo.annotation_codes %></td>
+	<td><%= h synth_oligo.other_annotations %></td>
+	<td width=220><%=h synth_oligo.sel_5prime %></td>
+	<td width=220><%=h synth_oligo.sel_3prime %></td>
+	<td align=center><%=h synth_oligo.sel_polarity %></td>
+	<td><%=h version_name(synth_oligo.version_id) %></td>
+	<td width=0><%= hidden_field_tag("export_id[]", synth_oligo.id)%>
+  </tr>
+<% end %>
+<% end %>
+</table>
+<%= link_to 'New search', :action => 'select_project' %> 

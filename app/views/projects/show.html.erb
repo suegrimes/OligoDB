@@ -1,0 +1,22 @@
+<table>
+  <tr>
+    <th>Project name:</th>  <td><%=h @project.project_name %></td>
+  </tr>
+  <tr>
+    <th>Description:</th>   <td><%=h @project.project_description %></td>
+  </tr>
+</table>
+
+<table class="border">
+  <tr>
+    <th>Gene List</th>
+  </tr>
+
+<% for gene in @project.project_genes %>
+  <tr>
+    <td><%= gene.gene_code %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Back', :back %>

@@ -1,0 +1,28 @@
+<h3>Edit BioMek Wells</h3>
+
+<table class="border">
+  <tr>
+  	<th>BioMek run</th>
+	<th>Enzyme</th>
+	<th>Well</th>
+	<th>Description</th>
+  </tr>
+  
+  <% form_tag(:action => 'upd_multi') do %>
+    <% for @pool_well in @pool_wells do %>
+	    <tr>
+  	      <td><%=h @pool_well.pool_plate_nr %></td>
+	      <td align=center><%=h @pool_well.enzyme_code %></td>
+	      <td align=center><%=h @pool_well.pool_well_nr %></td>
+		  <td><%= collection_select("pool_well[]", :project_id, @projects, 
+                                    :id, :project_name,
+                                   {:include_blank => 'Select project'}) %></td>
+	      <td><%= text_field("pool_well[]", 'description', :size => 20) %></td>
+		</tr>
+	<% end %>
+	<%= submit_tag "Update Wells" %>
+  <% end %>
+ 
+</table>
+
+<%= link_to 'Back', :back %>

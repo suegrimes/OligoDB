@@ -1,21 +1,29 @@
-<h1>New oligo_plate</h1>
+<h3>Create oligo plate copy(ies)</h3>
 
-<% form_for(@oligo_plate) do |f| %>
-  <%= f.error_messages %>
+<table class="border">
+  <% form_tag :action => 'copy_params' do %>
+ 
+  <tr>
+    <th>Source Plate Number:</th>
+    <td><%= collection_select(:oligo_plate, :id, @plate_nrs, :id, :oligo_plate_nr)%></td>
+  </tr>
   
-  <p> Source Plate <br />
-    <%= text_field (:oligo_plate, :source_plate, :value => @source_plate) %>
-  </p>
-  <p> Destination Plate <br />
-    <%= text_field (:oligo_plate, :dest_plate, :value => "plate_") %>
-  </p>
-  <p>
-    <%= f.label "Pipet volume:" %><br />
-    <%= f.text_field :well_initial_volume %>
-  </p>
-  <p>
-    <%= f.submit "Create" %>
-  </p>
-<% end %>
+  <tr>
+  	<th>Total volume to pipet out:</th>
+	<td><%= text_field_tag(:total_vol, 10, :size => 10) %></td>
+	<th>Copy plate concentration (uM):</th>
+	<td><%= text_field_tag(:copy_conc, 10, :size => 10) %></td>
+  </tr>
+  
+  <tr>
+  	<th>Copy code for new plate(s):</th>
+	<td><%= select_tag(:copy_code, options_for_select(%w{C D E F}))%></td>
+	<th>Number of copy plates:</th>
+	<td><%= text_field_tag(:nr_copies, 3, :size => 10) %></td>
+  </tr> 
+</table>
 
-<%= link_to 'Back', oligo_plates_path %>
+<%= submit_tag "Submit" %><br/><br/>
+<%end%>
+
+<%= link_to 'List Plates', oligo_plates_path %>

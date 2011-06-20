@@ -1,10 +1,12 @@
-<h1>Listing oligo_wells</h1>
 
-<table>
+<h3>Oligo Plate Inventory</h3>
+
+<table class="border">
   <tr>
   	<th>Oligo Plate</th>
 	<th>Oligo Well</th>
 	<th>Oligo Name</th>
+	<th>QC/Annot</th>
 	<th>Initial Vol</th>
 	<th>Remaining Vol</th>
   </tr>
@@ -12,12 +14,15 @@
 <% for oligo_well in @oligo_wells %>
   <tr>
   	<td><%= oligo_well.oligo_plate_nr %></td>
-	<td><%= oligo_well.oligo_well_nr %></td>
+	<td align=center><%= oligo_well.oligo_well_nr %></td>
 	<td><%= oligo_well.oligo_name %></td>
+	<td><%= format_annot(oligo_well.synth_oligo.internal_QC, oligo_well.synth_oligo.annotation_codes) %></td>
 	<td><%= oligo_well.well_initial_volume %></td>
 	<td><%= oligo_well.well_rem_volume %></td>
     <!--<td><%= link_to 'Edit', edit_oligo_well_path(oligo_well) %></td>-->
   </tr>
 <% end %>
 </table>
+<br>
+<%= link_to 'Back', :back%>
 

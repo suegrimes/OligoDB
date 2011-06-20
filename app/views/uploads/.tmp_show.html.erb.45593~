@@ -1,3 +1,0 @@
-<div style='color:green'> <%= flash[:notice]%></div>
-
-<%= link_to 'List all uploaded files', uploads_path %>

@@ -1,0 +1,21 @@
+<h3>Listing projects</h3>
+
+<table class="border">
+  <tr>
+    <th>Project name</th>
+    <th>Project description</th>
+  </tr>
+
+<% for project in @projects %>
+  <tr>
+    <td><%= project.project_name %></td>
+    <td><%= project.project_description %></td>
+    <td class='noborder'><%= link_to 'Show', project %></td>
+	<td class='noborder'><%= link_to 'Edit', edit_project_url(project) %></td>
+    <td class='noborder'><%= link_to 'Delete', project, :confirm => 'Are you sure?', 
+                                               :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'New project', new_project_path %>

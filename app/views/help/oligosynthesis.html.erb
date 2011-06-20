@@ -1,0 +1,91 @@
+<h3>Oligo Synthesis file</h3>   
+<P>One file per plate synthesized, with order header details in the first seven 
+rows. Tab delimited text format.&nbsp; One file per plate synthesized.  Text in column headings 
+is not important, but data MUST be in the correct columns as indicated below.</P>
+
+<TABLE class="border">
+  <TR>
+    <TH>Row</TH>
+    <TH>Column</TH>
+    <TH>Field description</TH>
+    <TH>Example</TH></TR>
+  <TR>
+    <TD>1</TD>
+    <TD>A</TD>
+    <TD>Synthesis order number</TD>
+    <TD>080125a</TD></TR>
+  <TR>
+    <TD>2</TD>
+    <TD>A</TD>
+    <TD>(Ignored)</TD>
+    <TD>100uM in 0.1xTE</TD></TR>
+  <TR>
+    <TD>3</TD>
+    <TD></TD>
+    <TD>(Blank; ignored)</TD>
+    <TD></TD></TR>
+  <TR>
+    <TD>4</TD>
+    <TD>A</TD>
+    <TD>Submitted plate number (from order)</TD>
+    <TD>plate_0003</TD></TR>
+  <TR>
+    <TD>4</TD>
+    <TD>B</TD>
+    <TD>Synthesis plate number</TD>
+    <TD>080125a (0003)</TD></TR>
+  <TR>
+    <TD>5-7</TD>
+    <TD></TD>
+    <TD>(Blank; ignored)</TD>
+    <TD></TD></TR></TR></TABLE>
+  
+  <p>Detail rows starting at line 9 (line 8 is column headings for detail rows)</p>
+  <TABLE class="border">
+  <TR><TD colspan=4 class='noborder'></TD></TR>
+  <TR>
+    <TH>Col</TH>
+    <TH>Field name</TH>
+    <TH>Field description</TH>
+    <TH>Example</TH></TR>
+
+  <TR>
+    <TD>A</TD>
+    <TD>Well count</TD>
+    <TD>Record number, starts at 1 for well A1</TD>
+    <TD>1</TD></TR>
+  <TR>
+    <TD>B</TD>
+    <TD>Well</TD>
+    <TD>Well number (A1-12, B1-12, ..H1-12 corresponds to well counts 1-96)</TD>
+    <TD>A1</TD></TR>
+  <TR>
+    <TD>C</TD>
+    <TD>Sequence</TD>
+    <TD> Oligo name</TD>
+    <TD>1_MseI_AKT1_ROI_11</TD></TR>
+  <TR>
+    <TD>D</TD>
+    <TD>Total vol (uL)</TD>
+    <TD>Total volume of oligo in well (adjust to 100uM)</TD>
+    <TD>359.96</TD></TR>
+  <TR>
+    <TD>E</TD>
+    <TD>Pipet to A</TD>
+    <TD> Volume pipetted out of S, into A</TD>
+    <TD>75</TD></TR>
+  <TR>
+    <TD>F</TD>
+    <TD>Pipet to B</TD>
+    <TD> Volume pipetted out of S, into B</TD>
+    <TD>75</TD></TR>
+  <TR>
+    <TD>G</TD>
+    <TD>Left in S</TD>
+    <TD>Remaining volume in S (after pipetting to A and B)</TD>
+    <TD>209.96</TD></TR>
+  <TR>
+    <TD>&gt;G</TD>
+    <TD>Miscellaneous</TD>
+    <TD>Any additional columns will be ignored</TD>
+    <TD></TD></TR></TABLE>

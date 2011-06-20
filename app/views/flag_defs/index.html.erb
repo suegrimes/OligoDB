@@ -1,0 +1,23 @@
+<h3>Oligo flag definitions</h3>
+
+<table class="border">
+  <tr>
+  	<th>Value</th>
+    <th>Name</th>
+	<th>Description</th>
+  </tr>
+
+<% for flag_def in @flag_defs %>
+  <tr>
+  	<td><%=h flag_def.flag_value %></td>
+    <td><%=h flag_def.flag_name %></td>
+	<td ><%=h flag_def.flag_description %></td>
+	<td><%= link_to 'Edit', edit_flag_def_path(flag_def) %></td>
+	<% if current_user && current_user.has_role?("admin") %>
+    <td><%= link_to 'Delete', flag_def, :confirm => 'Are you sure?', :method => :delete %></td>
+	<% end %>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'New flag definition', new_flag_def_path %>

@@ -1,0 +1,20 @@
+<% debug(@synth_file)%>
+
+<h3>Synthesis File Listing</h3>
+
+<table class="border">
+
+<% for synth_file in @synth_file %>
+  <tr>
+  	<% for synth_col in synth_file %>
+  	  <td><%= synth_col %></td>
+	<% end %>
+  </tr>
+<% end %>
+
+</table>
+
+<br />
+
+<%= link_to 'Back', :back %>
+

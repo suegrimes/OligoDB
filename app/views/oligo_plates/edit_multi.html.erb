@@ -1,0 +1,35 @@
+<h3>Oligo Plates</h3>
+
+<table class="border">
+	<tr>
+		<th>Plate Nr</th>
+		<th>Synth Order</th>
+		<th>Oligo conc (uM)</th>
+		<th>TE conc</th>
+		<th>Depleted?</th>
+		<th>Avail for Pool?</th>
+		<th>Room/Shelf/Bin/Box</th>
+		<th>Comments</th>
+    </tr>
+  <% form_tag(:action => :upd_multi) do %>
+  <% for @oligo_plate in @oligo_plates do %>
+    <tr>
+	    <td><%=h @oligo_plate.oligo_plate_nr %></td>
+		<td><%=h @oligo_plate.synth_plate_nr %></td>
+		<td><%= text_field("oligo_plate[]", 'oligo_conc_um',       :size => 10) %></td>
+		<td><%= text_field("oligo_plate[]", 'te_concentration',    :size => 10) %></td>
+		<td><%= text_field("oligo_plate[]", 'plate_depleted_flag', :size => 10) %></td>
+		<td><%= text_field("oligo_plate[]", 'available_for_pool',  :size => 10) %></td>
+		<td><%= collection_select("oligo_plate[]", :storage_location_id, @storage_locations, 
+                                                 :id, :location_string,
+                                                 {:include_blank => 'Select location'}) %></td>
+		<td><%= text_field("oligo_plate[]", 'comments') %></td>
+    </tr>
+  <% end %>
+  <%= submit_tag "Update Plates" %>
+  <% end %>
+</table>
+
+
+
+

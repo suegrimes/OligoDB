@@ -1,0 +1,38 @@
+
+<h3>Edit Pools</h3>
+
+<table class="border">
+  <tr>
+  	<th>Project</th>
+  	<th>Pool name</th>
+	<th>Description</th>
+	<th>Enzyme</th>
+	<th>Source Oligo Conc (uM)</th>
+	<th>Room/Shelf/Bin/Box</th>
+  </tr>
+  
+  <% form_tag(:action => 'upd_multi') do %>
+    <% for @pool in @pools do %>
+	    <tr>
+	      <td><%= collection_select("pool[]", :project_id, @projects, 
+                                              :id, :project_name,
+                                             {:include_blank => 'Select project'}) %></td>
+  	      <td><%= text_field("pool[]", 'pool_name', :size => 25) %></td>
+		  <td><%= text_field("pool[]", 'pool_description', :size => 15) %></td>
+		  <td><%= collection_select("pool[]", :enzyme_code, @enzymes_for_select, 
+                                              :label, :value,
+                                             {:include_blank => 'Select enzyme'}) %></td>
+		  <td><%= text_field("pool[]", 'source_conc_um', :size => 20) %></td>
+		  <td><%= collection_select("pool[]", :storage_location_id, @storage_locations, 
+                                              :id, :location_string,
+                                             {:include_blank => 'Select location'}) %></td>
+		  <td><%= link_to 'Add/Modify Wells', :controller=>'pools', :action=>'addwells',
+                                      :pool_id => @pool.id %></td>
+		</tr>
+	<% end %>
+	<%= submit_tag "Update Pools" %>
+  <% end %>
+</table>
+
+<%= link_to 'New Pool', new_pool_path %> |
+<%= link_to 'Show All Pools', pools_url %>

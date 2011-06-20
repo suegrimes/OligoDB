@@ -1,0 +1,20 @@
+<% debug(@biomek_file)%>
+
+<h3>BioMek File Listing</h3>
+
+<table class="border">
+
+<% for biomek_file in @biomek_file %>
+  <tr>
+  	<% for biomek_col in biomek_file %>
+  	  <td><%= biomek_col %></td>
+	<% end %>
+  </tr>
+<% end %>
+
+</table>
+
+<br />
+
+<%= link_to 'Back', :back %>
+

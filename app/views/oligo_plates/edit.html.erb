@@ -4,9 +4,23 @@
   <%= f.error_messages %>
 
   <p>
-    <%= f.label :oligo_plate_nr %><br />
-    <%= f.text_field :oligo_plate_nr %>
+    <%= @oligo_plate.oligo_plate_nr %> 
+    ( <%= @oligo_plate.synth_plate_nr %> )
   </p>
+
+  <p>
+    <%= f.label 'Room/Shelf/Bin/Box' %><br />
+	<%= @oligo_plate.storage_location.location_string if @oligo_plate.storage_location %>
+	&nbsp 
+	<%= f.collection_select(:storage_location_id, @storage_locations, 
+                                                 :id, :location_string) %> 
+  </p>
+  
+  <p>
+    <%= f.label :comments %><br />
+	<%= f.text_field :comments %>
+  </p>
+  
   <p>
     <%= f.submit "Update" %>
   </p>

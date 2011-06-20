@@ -1,18 +1,33 @@
-<h1>Listing pool_wells</h1>
+<h3>BioMek Inventory</h3>
 
-<table>
+<table class="border">
   <tr>
+  	<th>BioMek run</th>
+	<th>Enzyme Code</th>
+	<th>Well</th>
+	<th>Description</th>
+	<th># Oligos</th>
+	<th>Oligo Concentration</th>
+	<th>Pool?</th>
   </tr>
 
 <% for pool_well in @pool_wells %>
   <tr>
-    <td><%= link_to 'Show', pool_well %></td>
-    <td><%= link_to 'Edit', edit_pool_well_path(pool_well) %></td>
-    <td><%= link_to 'Destroy', pool_well, :confirm => 'Are you sure?', :method => :delete %></td>
+  	<td><%=h pool_well.pool_plate_nr %></td>
+	<td align=center><%=h pool_well.enzyme_code %></td>
+	<td align=center><%= link_to pool_well.pool_well_nr, 
+       :controller => "aliquots", :action => "index", 
+       :pool_well_id => pool_well.id  %></td>
+	<td><%=h pool_well.description %></td>
+	<td><%=h pool_well.nr_oligos %></td>
+	<td><%=h pool_well.oligo_concentration %></td>
+	<td><% if pool_well.subpools %>yes<% end %></td>
+	<td><%= link_to 'Edit', edit_pool_well_path(pool_well) %></td>
+	
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New pool_well', new_pool_well_path %>
+<%= link_to 'Back', :back %>

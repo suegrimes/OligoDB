@@ -1,0 +1,15 @@
+<h3>Oligo Design query - Select parameters</h3>
+
+<% form_tag :action=> 'list_selected', :param_type => 'gene_id' do %>
+
+<table>
+  <%= render :partial => 'shared/genes_or_ids', :locals => {:multiple_versions => false} %>
+  <%= render :partial => 'shared/exclude_flagged' %>	
+</table>
+
+<p><%= submit_tag "Submit"  %></p>
+
+  <%= render :partial => 'shared/gene_notes' %>
+  <%= render :partial => 'shared/oligoid_notes' %>	  
+<%end%>
+

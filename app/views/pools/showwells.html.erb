@@ -1,0 +1,29 @@
+<h3>Select Wells</h3>
+<%= debug(params) %>
+
+<table>
+  <tr>
+  	<td><b> Select wells to add to pool: </b> <%= @pool.pool_name %></td>
+  </tr>
+</table>
+<br>
+<table class="border">
+  <tr>
+    <th>Well</th>
+	<th>Enzyme</th>
+	<th>Concentration</th>
+	<th>Volume</th>
+	<th>Pool plate id</th>
+	<th>Pool id</th>
+  </tr>
+  <% for well in @pool_wells do %>
+	<tr>
+      <td><%=h well.pool_well_nr %></td>
+	  <td><%=h well.enzyme_code %></td>
+	  <td><%=h well.description %></td>
+	  <td><%=h well.pool_well_volume %></td>
+	  <td><%=h well.pool_plate_id %></td>
+	  <td><%=h well.pool_id %></td>
+    </tr>
+  <% end %>
+</table>
