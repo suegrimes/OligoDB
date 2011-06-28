@@ -19,7 +19,8 @@
 
 class Upload < ActiveRecord::Base
   # default directory for upload_column is RAILS_ROOT/public => go up two directories from default
-  upload_column :upload_file, :store_dir => File.join("..", "..", "OligoFiles", "upload_file"),
+  upload_column :upload_file, :store_dir => (CAPISTRANO_DEPLOY == true ? File.join("..", "..", "OligoFiles", "upload_file") :
+                                                                         File.join("..", "..", "..", "shared", "upload_file")),
                               :extensions => %w(txt csv)
   validates_presence_of :upload_file, :content_type
   validates_presence_of :version_id,   :if => Proc.new {|v| v.content_type == 'Design'}
