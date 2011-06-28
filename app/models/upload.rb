@@ -34,13 +34,14 @@ class Upload < ActiveRecord::Base
     upload_path = uploadfile.existing_file_path
     return ["ERROR - File #{upload_path} not found"] if !FileTest.file?(upload_path)
    
-    f = File.open(upload_path, 'r')
-    @filelines = Array.new
-    f.readlines.each do |line|
-      @filelines << line.split("\t")
-    end 
-    
-    return @filelines
+#    f = File.open(upload_path, 'r')
+#    @filelines = Array.new
+#    f.readlines.each do |line|
+#      @filelines << line.split("\t")
+#    end 
+
+    return FasterCSV.read(upload_path, {:headers => false, :col_sep => "\t"})
+ 
   end
   
   def file_name_no_dir
