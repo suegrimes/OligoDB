@@ -1,14 +1,20 @@
-
 <h3>Edit Pools</h3>
 
 <table class="border">
   <tr>
+  	<th colspan="5">&nbsp;</th>
+	<th>Source Oligo</th>
+	<th colspan="2">&nbsp;</th>
+  </tr>
+  <tr> 	
   	<th>Project</th>
+	<th>Pool label</th>
   	<th>Pool name</th>
 	<th>Description</th>
 	<th>Enzyme</th>
-	<th>Source Oligo Conc (uM)</th>
+	<th>Conc (uM)</th>
 	<th>Room/Shelf/Bin/Box</th>
+	<th>&nbsp;</th>
   </tr>
   
   <% form_tag(:action => 'upd_multi') do %>
@@ -17,6 +23,7 @@
 	      <td><%= collection_select("pool[]", :project_id, @projects, 
                                               :id, :project_name,
                                              {:include_blank => 'Select project'}) %></td>
+		  <td><%= text_field("pool[]", 'tube_label', :size => 10) %></td>
   	      <td><%= text_field("pool[]", 'pool_name', :size => 25) %></td>
 		  <td><%= text_field("pool[]", 'pool_description', :size => 15) %></td>
 		  <td><%= collection_select("pool[]", :enzyme_code, @enzymes_for_select, 

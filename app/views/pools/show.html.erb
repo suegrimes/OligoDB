@@ -2,13 +2,13 @@
 
 <table class="border">
 <tr>
-	<th>Pool Name:</th>   
-	<th>Tube Label:</th>  
-	<th>Room/Shelf/Bin/Box:</th>
+	<th>Pool Label</th>  
+	<th>Pool Name</th>   	
+	<th>Room/Shelf/Bin/Box</th>
   </tr>
   <tr>
-  	<td><%=h @pool.pool_name %> </td>
-	<td><%=h @pool.tube_label %></td>
+  	<td><%=h @pool.tube_label %></td>
+	<td><%=h @pool.pool_name %> </td>
 	<% if @pool.storage_location %>
 	  <td><%=h @pool.storage_location.location_string %></td>
 	<% end %>
@@ -20,7 +20,7 @@
   <tr>
   	<th>Project</th>
   	<th>Enzyme</th>
-	<th>Description:</th>
+	<th>Description</th>
 	<th># Oligos</th>
 	<th>Source Conc (uM)</th>
 	<th>Pool Vol(ul)</th>

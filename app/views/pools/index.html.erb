@@ -2,8 +2,9 @@
 
 <table class="border">
   <tr>
-    <th>Pool name</th>
-    <th>Pool description</th>
+    <th>Pool label</th>
+	<th>Pool name</th>
+    <th>Description</th>
 	<th># of oligos</th>
 	<th>Pool vol (ul) </th>
     <th>Room/Shelf/Bin/Box</th>
@@ -11,6 +12,7 @@
 
 <% for pool in @pools %>
   <tr>
+  	<td><%=h pool.tube_label %></td>
 	<td><%= link_to pool.pool_name, pool_url(:id => pool.id) %></td>
     <td><%=h pool.pool_description %></td>
 	<td><% if pool.nr_oligos %>
