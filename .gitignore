@@ -3,6 +3,7 @@ tmp
 db/*.sqlite3
 db/data.yml
 public/system/*
+public/tmp/*
 public/*.zip
 public/javascripts/all.js
 config/database.yml
