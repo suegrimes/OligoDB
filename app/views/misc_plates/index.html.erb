@@ -1,0 +1,20 @@
+<h3>Listing Miscellaneous Oligo Order Plates</h3>
+
+<table class="border">
+  <tr>
+    <th>Plate ID</th>
+    <th>Plate#</th>
+    <th>Description</th>
+	<th>Synthesis Date</th>
+  </tr>
+
+<% for plate in @misc_plates %>
+  <tr>
+    <td><%=h plate.id %></td>
+    <td><%=h plate.plate_number %></td>
+    <td><%=h plate.plate_description %></td>
+	<td><%=h plate.synthesis_date %></td>
+    <td><%= link_to 'Show', plate %></td>
+  </tr>
+<% end %>
+</table>

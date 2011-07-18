@@ -17,6 +17,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :vectors
   map.exportd 'export_designs',        :controller => 'oligo_designs',   :action => 'export'
   
+  # Routes for oligo design orders (misc oligos)
+  map.resources :misc_plates
+  map.resources :misc_oligos
+  map.misc_query 'misc_query',         :controller => 'misc_oligos',  :action => 'new_query'
+  
   # Oligo design queries
   map.show_oligo 'show_oligo',         :controller => 'oligo_designs', :action => 'show', :id => :id
   map.designquery 'designquery',       :controller => 'oligo_designs', :action => 'select_project'

@@ -1,0 +1,20 @@
+<h3>Details for Oligo: <%=h @misc_oligo.oligo_name %>, on plate: <%=h @misc_oligo.plate_number %></h3>
+
+<table class="border">
+  <tr>
+  	<th>Plate#: </th><td><%=h @misc_oligo.plate_number %></td>
+	<th>Well Seq:</th><td><%=h @misc_oligo.well_order %></td>
+  </tr> 
+  <tr>
+  	<th>Oligo Type: </th><td><%=h @misc_oligo.oligo_type_descr %></td>
+  </tr>
+  <tr>
+  	<th>Oligo Name: </th><td colspan="3"><%=h @misc_oligo.oligo_name %></td>
+  </tr>
+  <tr>
+  	<th>Sequence: </th><td colspan="3"><%=h @misc_oligo.sequence %></td>
+  </tr>
+  <tr>
+  	<th>Notes: </th><td colspan="3"><%=h @misc_oligo.notes %></td>
+  </tr>  
+</table>
