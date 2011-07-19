@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
   require 'fastercsv'
   require 'ar-extensions/adapters/mysql'
   require 'ar-extensions/import/mysql'
+  require 'calendar_date_select'
   
   helper :all # include all helpers, all the time
   

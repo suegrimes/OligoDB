@@ -20,7 +20,7 @@ ActionController::Routing::Routes.draw do |map|
   # Routes for oligo design orders (misc oligos)
   map.resources :misc_plates
   map.resources :misc_oligos
-  map.misc_query 'misc_query',         :controller => 'misc_oligos',  :action => 'new_query'
+  map.misc_query 'misc_query',         :controller => 'misc_plates',  :action => 'new_query'
   
   # Oligo design queries
   map.show_oligo 'show_oligo',         :controller => 'oligo_designs', :action => 'show', :id => :id

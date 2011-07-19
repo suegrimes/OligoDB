@@ -34,6 +34,7 @@ Rails::Initializer.run do |config|
   # config.gem "fastercsv", :version => '1.4.0', :source => "http://fastercsv.rubyforge.org"
     config.gem "fastercsv"
     config.gem "ar-extensions", :version => '0.9.2'
+    config.gem "calendar_date_select"
     
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.
@@ -83,3 +84,6 @@ include SqltableExtensions           # sql methods (eg. find next auto increment
 # Set MySQL connection parameters in attempt to avoid Mongrel/MySQL timeout issue
 # Timeout of 604800 (mins) == one week
 ActiveRecord::Base.verification_timeout = 604800
+
+# Date/Time formating for CalendarDateSelect
+  CalendarDateSelect.format = :iso_date
