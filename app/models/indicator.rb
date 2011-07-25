@@ -2,9 +2,9 @@
 #
 # Table name: indicators
 #
-#  id                  :integer(11)     not null, primary key
-#  last_oligo_plate_nr :integer(11)
-#  last_pool_plate_nr  :integer(11)
+#  id                  :integer(4)      not null, primary key
+#  last_oligo_plate_nr :integer(4)
+#  last_pool_plate_nr  :integer(4)
 #
 
 class Indicator < InventoryDB

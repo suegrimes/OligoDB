@@ -3,10 +3,11 @@
     <th>Oligo ID</th>
     <th>Oligo name (1st 50 chars)</th>
     <th>Oligo type</th>
-	<th>Sequence (bases 1-40) </th>
+	<th>Sequence Ordered (bases 1-40) </th>
 	<th>Plate ID</th>
 	<th>Plate#</th>
 	<th>Well Seq</th>
+	<th>Well</th>
 	<th>Notes</th>
   </tr>
 
@@ -19,6 +20,7 @@
 	<td><%=h oligo.misc_plate_id %></td>
 	<td><%=h oligo.plate_number %></td>
 	<td><%=h oligo.well_order %></td>
+	<td><%=h oligo.well_coord %></td>
 	<td><%=h oligo.notes %></td>
     <td><%= link_to 'Show', oligo %></td>
   </tr>

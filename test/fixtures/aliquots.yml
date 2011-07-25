@@ -2,9 +2,9 @@
 #
 # Table name: aliquots
 #
-#  id               :integer(11)     not null, primary key
-#  oligo_well_id    :integer(11)     default(0)
-#  pool_well_id     :integer(11)     default(0)
+#  id               :integer(4)      not null, primary key
+#  oligo_well_id    :integer(4)      default(0)
+#  pool_well_id     :integer(4)      default(0)
 #  plate_from       :string(50)
 #  well_from        :string(4)
 #  to_plate_or_pool :string(1)

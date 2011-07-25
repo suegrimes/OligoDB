@@ -2,15 +2,15 @@
 #
 # Table name: oligo_plates
 #
-#  id                  :integer(11)     not null, primary key
-#  oligo_order_id      :integer(11)
+#  id                  :integer(4)      not null, primary key
+#  oligo_order_id      :integer(4)
 #  oligo_plate_nr      :string(50)      default(""), not null
 #  oligo_plate_num     :string(8)
 #  synth_plate_nr      :string(25)
 #  plate_copy_code     :string(2)       default(""), not null
-#  oligo_conc_um       :integer(8)
+#  oligo_conc_um       :integer(4)
 #  te_concentration    :decimal(11, 4)
-#  storage_location_id :integer(11)
+#  storage_location_id :integer(4)
 #  plate_depleted_flag :string(1)
 #  available_for_pool  :string(1)
 #  comments            :string(255)

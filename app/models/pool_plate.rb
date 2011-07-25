@@ -2,8 +2,8 @@
 #
 # Table name: pool_plates
 #
-#  id              :integer(11)     not null, primary key
-#  project_id      :integer(11)
+#  id              :integer(4)      not null, primary key
+#  project_id      :integer(4)
 #  pool_plate_nr   :string(50)
 #  pool_plate_desc :string(255)
 #  created_at      :datetime

@@ -2,7 +2,7 @@
 #
 # Table name: flag_defs
 #
-#  id               :integer(11)     not null, primary key
+#  id               :integer(4)      not null, primary key
 #  flag_type        :string(2)       default(""), not null
 #  flag_value       :string(4)       default(""), not null
 #  flag_name        :string(30)
