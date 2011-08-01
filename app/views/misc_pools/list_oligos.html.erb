@@ -1,3 +1,11 @@
-<h3>Listing Miscellaneous Oligos for Pool</h3>
+<h3>Listing Miscellaneous <%= @misc_oligos.size %>Oligos for Pool</h3>
 
-<%= render :partial => 'misc_oligos/list_oligos', :locals => {:misc_oligos => @misc_oligos} %>
+<% form_tag(:action => :create) do %>
+
+ <%= submit_tag 'Create Pool' %>
+ <%= check_box_tag("checkall", '1', false, {:onclick => "checkUncheckAll(this);"}) %>Check/Uncheck All<br/><br/>
+
+<%= render :partial => 'misc_oligos/list_oligos', :locals => {:misc_oligos => @misc_oligos,
+                                                              :checkbox => true} %>
+
+<% end %>

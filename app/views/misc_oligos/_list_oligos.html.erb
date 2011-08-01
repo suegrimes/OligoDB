@@ -1,5 +1,8 @@
+<% checkbox ||= false %>
+
 <table class="border">
   <tr>
+  	<% if checkbox == true %><th>&nbsp;</th><% end %>
     <th>Oligo ID</th>
     <th>Oligo name (1st 50 chars)</th>
     <th>Oligo type</th>
@@ -10,6 +13,7 @@
 
 <% for oligo in misc_oligos %>
   <tr>
+  	<% if checkbox == true %><td><%= check_box_tag("oligo_id[#{oligo.id}]") %></td><% end %>
     <td><%=h oligo.id %></td>
     <td><%=h oligo.oligo_name[0,49] %></td>
     <td><%=h oligo.oligo_type_descr %></td>

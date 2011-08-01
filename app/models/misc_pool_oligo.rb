@@ -11,7 +11,6 @@
 #
 
 class MiscPoolOligo < ActiveRecord::Base
-  has_many :misc_oligos
-  has_many :misc_pools
-  
+  belongs_to :misc_oligo
+  belongs_to :misc_pool 
 end

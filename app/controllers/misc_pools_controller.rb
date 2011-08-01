@@ -25,7 +25,7 @@ class MiscPoolsController < ApplicationController
   # GET /misc_pools/1
   # GET /misc_pools/1.xml
   def show
-    @misc_pool = MiscPool.find(params[:id], :include => :misc_oligos)
+    @misc_pool = MiscPool.find(params[:id], :include => {:misc_pool_oligos => :misc_oligo})
     render :action => 'show'
   end
 
@@ -38,9 +38,14 @@ class MiscPoolsController < ApplicationController
   # POST /misc_pools.xml
   def create
     @misc_pool = MiscPool.new(params[:misc_pool])
+    @misc_pool.save
+    
+    params[:oligo_id].keys.each do |oligo_id|
+      @misc_pool.misc_pool_oligos.build(:misc_pool_id => @misc_pool.id, :misc_oligo_id => oligo_id)
+    end
 
     if @misc_pool.save
-      flash[:notice] = 'MiscPool was successfully created.'
+      flash[:notice] = "Misc pool successfully created with #{params[:oligo_id].size} oligos"
       redirect_to(@misc_pool)
     else
       render :action => "new" 
