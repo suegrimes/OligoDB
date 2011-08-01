@@ -2,10 +2,10 @@
 #
 # Table name: created_files
 #
-#  id            :integer(11)     not null, primary key
+#  id            :integer(4)      not null, primary key
 #  content_type  :string(20)      default(""), not null
 #  created_file  :string(255)     default(""), not null
-#  researcher_id :integer(11)
+#  researcher_id :integer(4)
 #  created_at    :datetime        not null
 #  updated_at    :datetime        not null
 #

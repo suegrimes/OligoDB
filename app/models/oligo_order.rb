@@ -2,7 +2,7 @@
 #
 # Table name: oligo_orders
 #
-#  id              :integer(11)     not null, primary key
+#  id              :integer(4)      not null, primary key
 #  order_hdr       :string(25)
 #  researcher      :string(20)
 #  order_submit_dt :date

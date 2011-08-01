@@ -2,7 +2,7 @@
 #
 # Table name: storage_locations
 #
-#  id         :integer(11)     not null, primary key
+#  id         :integer(4)      not null, primary key
 #  room_nr    :string(25)      default(""), not null
 #  shelf_nr   :string(25)
 #  bin_nr     :string(25)

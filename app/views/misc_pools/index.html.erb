@@ -1,0 +1,22 @@
+<h3>Listing Miscellaneous Oligo Pools</h3>
+
+<table class="border">
+  <tr>
+    <th>Pool ID</th>
+    <th>Pool Name</th>
+	<th>Description</th>
+    <th>Tube Label</th>
+	<th>Comments</th>
+  </tr>
+
+<% for pool in @misc_pools %>
+  <tr>
+    <td><%=h pool.id %></td>
+    <td><%=h pool.pool_name %></td>
+    <td><%=h pool.pool_description %></td>
+	<td><%=h pool.tube_label %></td>
+	<td><%=h pool.comments %></td>
+    <td><%= link_to 'Show', pool %></td>
+  </tr>
+<% end %>
+</table>

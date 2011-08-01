@@ -2,14 +2,14 @@
 #
 # Table name: oligo_wells
 #
-#  id                    :integer(11)     not null, primary key
+#  id                    :integer(4)      not null, primary key
 #  oligo_plate_nr        :string(50)      default(""), not null
 #  oligo_well_nr         :string(4)       default(""), not null
-#  oligo_plate_id        :integer(11)     default(0), not null
+#  oligo_plate_id        :integer(4)      default(0), not null
 #  oligo_plate_num       :string(8)
 #  plate_copy_code       :string(2)
-#  oligo_design_id       :integer(11)
-#  synth_oligo_id        :integer(11)     not null
+#  oligo_design_id       :integer(4)
+#  synth_oligo_id        :integer(4)      not null
 #  oligo_name            :string(100)
 #  enzyme_code           :string(20)
 #  well_initial_volume   :decimal(11, 3)

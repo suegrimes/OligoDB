@@ -2,10 +2,10 @@
 #
 # Table name: export_fields
 #
-#  id           :integer(11)     not null, primary key
-#  export_type  :integer(4)
+#  id           :integer(4)      not null, primary key
+#  export_type  :integer(1)
 #  model_nm     :string(50)      default(""), not null
-#  report_order :integer(6)
+#  report_order :integer(2)
 #  fld_heading  :string(25)
 #  fld_name     :string(50)
 #

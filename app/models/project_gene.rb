@@ -2,8 +2,8 @@
 #
 # Table name: project_genes
 #
-#  id         :integer(11)     not null, primary key
-#  project_id :integer(11)     not null
+#  id         :integer(4)      not null, primary key
+#  project_id :integer(4)      not null
 #  gene_code  :string(25)      default(""), not null
 #
 

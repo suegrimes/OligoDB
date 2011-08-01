@@ -2,10 +2,10 @@
 #
 # Table name: subpools
 #
-#  id            :integer(11)     not null, primary key
-#  pool_well_id  :integer(11)     not null
-#  pool_id       :integer(11)     not null
-#  nr_oligos     :integer(11)
+#  id            :integer(4)      not null, primary key
+#  pool_well_id  :integer(4)      not null
+#  pool_id       :integer(4)      not null
+#  nr_oligos     :integer(4)
 #  ul_to_pool    :decimal(9, 4)
 #  oligo_conc_nm :decimal(9, 4)
 #  created_at    :datetime

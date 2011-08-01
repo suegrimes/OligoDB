@@ -2,20 +2,20 @@
 #
 # Table name: pool_wells
 #
-#  id                  :integer(11)     not null, primary key
-#  pool_plate_id       :integer(11)     default(0), not null
+#  id                  :integer(4)      not null, primary key
+#  pool_plate_id       :integer(4)      default(0), not null
 #  pool_plate_nr       :string(50)
 #  pool_well_nr        :string(4)       default(""), not null
 #  pool_tube_label     :string(50)
 #  enzyme_code         :string(20)
 #  description         :string(20)
 #  pool_well_volume    :float(11)       default(0.0)
-#  nr_oligos           :integer(6)      default(0)
+#  nr_oligos           :integer(4)      default(0)
 #  ul_to_pool          :float(9)
 #  oligo_concentration :float(11)
-#  project_id          :integer(11)
-#  pool_id             :integer(11)
-#  storage_location_id :integer(11)
+#  project_id          :integer(4)
+#  pool_id             :integer(4)
+#  storage_location_id :integer(4)
 #  comments            :string(255)
 #  created_at          :datetime
 #  updated_at          :datetime

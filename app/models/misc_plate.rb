@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: misc_plates
+#
+#  id                :integer(4)      not null, primary key
+#  plate_number      :string(4)       default(""), not null
+#  plate_description :string(50)
+#  synthesis_date    :date
+#  updated_at        :timestamp
+#
+
 class MiscPlate < ActiveRecord::Base
   has_many :misc_oligos
   

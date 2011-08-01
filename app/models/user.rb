@@ -2,11 +2,12 @@
 #
 # Table name: users
 #
-#  id                        :integer(11)     not null, primary key
+#  id                        :integer(4)      not null, primary key
 #  login                     :string(255)
 #  email                     :string(255)
 #  crypted_password          :string(40)
 #  salt                      :string(40)
+#  reset_code                :string(50)
 #  created_at                :datetime
 #  updated_at                :datetime
 #  remember_token            :string(255)

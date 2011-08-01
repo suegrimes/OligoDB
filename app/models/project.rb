@@ -2,10 +2,10 @@
 #
 # Table name: projects
 #
-#  id                  :integer(11)     not null, primary key
+#  id                  :integer(4)      not null, primary key
 #  project_name        :string(50)      default(""), not null
 #  project_description :string(255)
-#  version_id          :integer(11)
+#  version_id          :integer(4)
 #
 
 class Project < ActiveRecord::Base
