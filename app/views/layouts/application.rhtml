@@ -24,42 +24,80 @@
 <div id="container">
 	<div id="leftsidebar">
     <ul class="user_info">
-      <%if current_user%> <li><i> Logged in as: <%= current_user.login%> </i></li><%end%>
+      <% mdisplay = menu_display %>
+      <% user_roles = (current_user ? current_user.roles.collect(&:name) : nil) %>
+      <%if current_user%> <li><i> Logged in as: <%= current_user.login%> </i></li><%end%>	  
+	  
 	  <%if Version::DESIGN_VERSION_NAMES %> 
 	    <li><i> Exome build: <%= Version::DESIGN_VERSION_NAMES %> </i></li>
 	  <%end%>
 	</ul>
 	<ul>
 	<li> <%= link_to 'Home', {:controller=>'oligo_designs', :action=>'welcome'} %></li>
-						 
-	<% if current_user && current_user.has_role?("admin")%>
-	  <%= render :partial => 'shared/menu/designs' %> 
-	<% end %>
-	<% if current_user && current_user.has_role?("stanford")%> 
-	  <%= render :partial => 'shared/menu/synthesis' %>  
-	  <%= render :partial => 'shared/menu/plates' %>
-      <%= render :partial => 'shared/menu/pools' %>
-	<% end %>
-    
-	<% if current_user && current_user.has_role?("stanford") %>
-	  <%= render :partial => 'shared/menu/oligoquery' %>
-	<% else %>
-	  <%= render :partial => 'shared/menu/oligodesign_query' %>
-	<% end %>
 	
-	<% if current_user && current_user.has_role?("stanford")%>
-	  <%= render :partial => 'shared/menu/platequery' %>
-      <%= render :partial => 'shared/menu/admin' %>
+	<% if current_user && current_user.has_role?("stanford")%> 
+	  <li><%= link_to_function "Oligo Designs", toggle_div(:designssubmenu) %></li>	
+	  <div id="designssubmenu", style=<%= "display:none" if mdisplay[:designs] == 0 %>>
+	  	<ul>				 
+	    <% if current_user && current_user.has_role?("admin")%>
+		<li><%= link_to 'Load Oligo Designs', uploads_path(:filetype => 'Design') %></li>
+		<% end %>
+		<li><%= link_to 'Query Oligo Designs', {:controller=>'oligo_designs', :action=>'select_project'} %></li>
+		</ul>
+	  </div>
+
+	  <li><%= link_to_function "Oligo Synthesis", toggle_div(:synthesissubmenu) %></li>	
+      <div id="synthesissubmenu", style=<%= "display:none" if mdisplay[:synthesis] == 0 %>>
+      	 <ul>
+	     <li><%= link_to 'Create Synthesis Order', synth_order_path %></li>
+		 <li><%= link_to 'List Synthesis Orders', synth_files_path %></li>
+	     <li><%= link_to 'Load Synthesized Oligos', uploads_path(:filetype => 'Synthesis') %></li>
+		 <li><%= link_to 'Query Synthesized Oligos', inventoryquery_url %></li>
+		 </ul>
+      </div>
+	    
+	  <li><%= link_to_function "Oligo Plates", toggle_div(:platessubmenu) %></li>	
+      <div id="platessubmenu", style=<%= "display:none" if mdisplay[:plates] == 0 %>>
+      	 <ul>
+	     <li><%= link_to 'Create Copy Plates', new_oligo_plate_url  %></li>
+		 <li><%= link_to 'Edit Oligo Plates', plates_edit_url %></li>
+		 <li><%= link_to 'Query Low Inventory', {:controller => 'oligo_wells', :action => 'selectthreshold'} %></li>
+         <li><%= link_to 'List Oligo Plates', oligo_plates_path %></li> 
+		 </ul>
+      </div>
+	  
+      <li><%= link_to_function "Oligo Pools", toggle_div(:poolssubmenu) %></li>	
+      <div id="poolssubmenu", style=<%= "display:none" if mdisplay[:pools] == 0 %>>
+      	 <ul>
+      	   <li><%= link_to 'Create Pool', new_pool_path  %></li>
+		   <li><%= link_to 'List BioMek Templates', biomek_files_path %></li>
+		   <li><%= link_to 'List BioMek Runs', pool_plates_path %></li>
+		   <li><%= link_to 'List Pools', pools_path %></li>
+		 </ul>
+      </div>
+	
+      <li> <%= link_to_function "Supporting Tables", toggle_div(:adminsubmenu) %></li>
+      <div id="adminsubmenu", style=<%= "display:none" if mdisplay[:supporting] == 0 %>>
+        <ul>
+	    <li><%= link_to 'Projects', projects_path %></li>
+        <li><%= link_to 'Researchers', researchers_path %></li> 
+	    <li><%= link_to 'Storage Locations', storage_locations_path %></li>
+	    <li><%= link_to 'Flag Definitions', flag_defs_path %></li>
+	    <li><%= link_to 'Versions', versions_path %></li>
+	    <% if current_user.has_role?("admin")%>
+	    <li><%= link_to 'Users', users_path %></li>
+	    <% end %>
+	    </ul>
+      </div>
 	<% end %>
 	  
 	<li><%= link_to_function "Help", toggle_div(:helpsubmenu) %></li>
-	<div id="helpsubmenu", style="display:none">
+	<div id="helpsubmenu", style=<%= "display:none" if mdisplay[:help] == 0 %>>
       <ul>
-      <li>Application help</li> 
-	
-	<% if current_user && current_user.has_role?("stanford")%>
-	   <%= render :partial => 'shared/help_fileformat' %>
-	<% end %>
+        <li>Application help</li> 
+	    <li><%= link_to 'Oligo Design format', {:controller=>'help', :action=>'oligodesign'} %></li>
+        <li><%= link_to 'Oligo Synthesis format', {:controller=>'help', :action=>'oligosynthesis'} %></li> 
+        <li><%= link_to 'BioMek file format', {:controller=>'help', :action=>'biomekfile'} %></li>
 	  </ul>
     </div>
 

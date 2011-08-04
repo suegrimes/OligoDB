@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+        <title>SGTC Oligo DB <%= controller.action_name %></title>
+        <%= stylesheet_link_tag 'sgtc_new' %>
+        <%= javascript_include_tag :defaults %>
+    </head>
+
+<body id='body'>
+	
+<div id="header">
+	<img src="/images/sutech_reflect_DB.gif" alt="Stanford Genome Technology" width="115" height="80" title="SGTC Oligo Database" />
+
+	<% if RAILS_ENV == 'production'%>
+	  <h1 class="prod">SGTC Oligo Database</h1>  
+	<% else %>
+	  <h1 class="test">SGTC Oligo Database  (<%= RAILS_ENV%>)</h1>
+	<% end %>
+	
+	<% if Version::APP_VERSION %><p>Version: <%= Version::APP_VERSION %></p><% end %>
+</div>
+
+<div id="container">
+	<div id="leftsidebar">
+    <ul class="user_info">
+      <%if current_user%> <li><i> Logged in as: <%= current_user.login%> </i></li><%end%>
+	  <%if Version::DESIGN_VERSION_NAMES %> 
+	    <li><i> Exome build: <%= Version::DESIGN_VERSION_NAMES %> </i></li>
+	  <%end%>
+	</ul>
+	<ul>
+	<li> <%= link_to 'Home', {:controller=>'oligo_designs', :action=>'welcome'} %></li>
+						 
+	<% if current_user && current_user.has_role?("admin")%>
+	  <%= render :partial => 'shared/menu/designs' %> 
+	<% end %>
+	<% if current_user && current_user.has_role?("stanford")%> 
+	  <%= render :partial => 'shared/menu/synthesis' %>  
+	  <%= render :partial => 'shared/menu/plates' %>
+      <%= render :partial => 'shared/menu/pools' %>
+	<% end %>
+    
+	<% if current_user && current_user.has_role?("stanford") %>
+	  <%= render :partial => 'shared/menu/oligoquery' %>
+	<% else %>
+	  <%= render :partial => 'shared/menu/oligodesign_query' %>
+	<% end %>
+	
+	<% if current_user && current_user.has_role?("stanford")%>
+	  <%= render :partial => 'shared/menu/platequery' %>
+      <%= render :partial => 'shared/menu/admin' %>
+	<% end %>
+	  
+	<li><%= link_to_function "Help", toggle_div(:helpsubmenu) %></li>
+	<div id="helpsubmenu", style="display:none">
+      <ul>
+      <li>Application help</li> 
+	
+	<% if current_user && current_user.has_role?("stanford")%>
+	   <%= render :partial => 'shared/help_fileformat' %>
+	<% end %>
+	  </ul>
+    </div>
+
+	<li><%= link_to 'Logout', logout_url %></li>
+	</ul>
+	</div>
+
+	<div id="maincontent">
+	<% if flash[:notice] %>
+      <span style='color:green'> <%= flash[:notice]%></span><br />
+	<% end %>
+	
+	<%= yield %>
+	</div>
+	
+</div> 
+
+<div id="footer">
+	<p class="lft"><a href="http://med.stanford.edu/sgtc/">Stanford Genome Technology Center</a> | <a href="mailto:sgrimes@stanford.edu">Contact</a> | </p>
+
+</div>
+
+
+</body>
+</html>
+
+
