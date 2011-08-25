@@ -22,7 +22,7 @@ class MiscPlate < ActiveRecord::Base
   end
   
   def self.find_min_and_max_dates
-    synth_dates = self.find(:all).collect(&:synthesis_date)
+    synth_dates = self.find(:all, :conditions => "synthesis_date IS NOT NULL").collect(&:synthesis_date)
     return synth_dates.min, synth_dates.max
   end
 end
