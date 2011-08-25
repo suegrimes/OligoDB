@@ -1,7 +1,7 @@
 class MiscPoolsController < ApplicationController
-  require_role "admin", :for_all_except => [:new_query, :show, :index]
+  require_role "admin", :for_all_except => [:new_params, :show, :index]
   
-  def new_query
+  def new_params
     @min_plate, @max_plate = MiscPlate.find_min_and_max_plates
     @min_date, @max_date   = MiscPlate.find_min_and_max_dates
     # Invert hash keys/values (ie hash value first, then key); convert to array, sort and add blank first value
@@ -42,20 +42,13 @@ class MiscPoolsController < ApplicationController
   # POST /misc_pools.xml
   def create
     @misc_pool = MiscPool.new(params[:misc_pool])
-    if @misc_pool.save
+    if params[:oligo_id]
+      params[:oligo_id].keys.each {|m_id| @misc_pool.misc_pool_oligos.build(:misc_oligo_id => m_id)}
+    end
     
-      params[:oligo_id].keys.each do |oligo_id|
-        @misc_pool.misc_pool_oligos.build(:misc_pool_id => @misc_pool.id, :misc_oligo_id => oligo_id)
-      end
-
-      if @misc_pool.save
-        flash[:notice] = "Misc pool successfully created with #{params[:oligo_id].size} oligos"
-        redirect_to(@misc_pool)
-      else
-        flash[:error] = 'Error saving oligos to pool - please delete the pool and try request again'
-        render :action => :index 
-      end
-      
+    if @misc_pool.save
+      flash[:notice] = "Misc pool successfully created with #{params[:oligo_id].size} oligos"
+      redirect_to(@misc_pool)
     else
       # Validation error in entering misc pool
       @misc_oligos = MiscOligo.find(:all, :include => :misc_plate, :conditions => ["id in (?)", params[:oligo_id].keys])

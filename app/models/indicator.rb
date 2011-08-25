@@ -13,7 +13,7 @@ class Indicator < InventoryDB
                   :synthesis => %w{synth_oligos synth_orders uploads},
                   :plates => %w{oligo_plates oligo_wells},
                   :biomek => %w{biomek_runs pool_plates pool_wells},
-                  :pools => %w{subpools pools},
+                  :pools => %w{subpools pools misc_pools},
                   :supporting => %w{projects researchers storage_locations vectors versions flag_defs users},
                   :help => ['help']}
   

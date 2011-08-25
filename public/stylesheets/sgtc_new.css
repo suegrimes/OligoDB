@@ -314,6 +314,25 @@ table {
 	border: 1px dotted #dedacb; /* #b0aa91; */
 	padding: .1em .3em;
 }
+
+table.form {
+    border-collapse: collapse;
+}
+
+.form th {
+    font-size: .85em;
+    font-weight: bolder;
+    text-align: right;
+    vertical-align:middle;
+}
+
+.form td {
+    font-size: .85em;
+    vertical-align:middle;
+    padding-right: .75em;
+    white-space:nowrap;
+}
+
 	
 /* end styles for tables */
 

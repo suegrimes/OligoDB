@@ -21,8 +21,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :misc_plates
   map.resources :misc_oligos
   map.resources :misc_pools
-  map.mplate_query 'mplate_query',    :controller => 'misc_plates',  :action => 'new_query'
-  map.mpool_query  'mpool_query',     :controller => 'misc_pools',  :action => 'new_query'
+  map.mplate_query 'mplate_query',    :controller => 'misc_plates', :action => 'new_query'
+  map.mpool_new    'mpool_new',       :controller => 'misc_pools',  :action => 'new_params'
   map.mpool_list   'mpool_list',      :controller => 'misc_pools',  :action => 'list_oligos'
   
   # Oligo design queries

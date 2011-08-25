@@ -18,5 +18,7 @@ class MiscPool < ActiveRecord::Base
   has_many :misc_oligos, :through => :misc_pool_oligos
   belongs_to :storage_location
   
+  accepts_nested_attributes_for :misc_pool_oligos
+  
   validates_presence_of :tube_label
 end
