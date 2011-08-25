@@ -11,6 +11,9 @@ class MiscPoolsController < ApplicationController
   def list_oligos
     sql_where_clause = define_conditions(params)
     @misc_oligos = MiscOligo.find(:all, :include => :misc_plate, :conditions => sql_where_clause)
+    @checked = false
+    @misc_pool = MiscPool.new
+    @storage_locations = StorageLocation.find(:all, :order => "room_nr, shelf_nr")
     render :action => 'list_oligos'
   end
   
@@ -32,23 +35,33 @@ class MiscPoolsController < ApplicationController
   # GET /misc_pools/1/edit
   def edit
     @misc_pool = MiscPool.find(params[:id])
+    @storage_locations = StorageLocation.find(:all, :order => "room_nr, shelf_nr")
   end
 
   # POST /misc_pools
   # POST /misc_pools.xml
   def create
     @misc_pool = MiscPool.new(params[:misc_pool])
-    @misc_pool.save
-    
-    params[:oligo_id].keys.each do |oligo_id|
-      @misc_pool.misc_pool_oligos.build(:misc_pool_id => @misc_pool.id, :misc_oligo_id => oligo_id)
-    end
-
     if @misc_pool.save
-      flash[:notice] = "Misc pool successfully created with #{params[:oligo_id].size} oligos"
-      redirect_to(@misc_pool)
+    
+      params[:oligo_id].keys.each do |oligo_id|
+        @misc_pool.misc_pool_oligos.build(:misc_pool_id => @misc_pool.id, :misc_oligo_id => oligo_id)
+      end
+
+      if @misc_pool.save
+        flash[:notice] = "Misc pool successfully created with #{params[:oligo_id].size} oligos"
+        redirect_to(@misc_pool)
+      else
+        flash[:error] = 'Error saving oligos to pool - please delete the pool and try request again'
+        render :action => :index 
+      end
+      
     else
-      render :action => "new" 
+      # Validation error in entering misc pool
+      @misc_oligos = MiscOligo.find(:all, :include => :misc_plate, :conditions => ["id in (?)", params[:oligo_id].keys])
+      @checked = true
+      @storage_locations = StorageLocation.find(:all, :order => "room_nr, shelf_nr")
+      render :action => :list_oligos
     end
   end
 

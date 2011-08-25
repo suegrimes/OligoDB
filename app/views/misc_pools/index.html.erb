@@ -3,19 +3,19 @@
 <table class="border">
   <tr>
     <th>Pool ID</th>
+	<th>Label</th>
     <th>Pool Name</th>
-	<th>Description</th>
-    <th>Tube Label</th>
-	<th>Comments</th>
+	<th>Source Conc(um)</th>
+	<th>Description</th>   
   </tr>
 
 <% for pool in @misc_pools %>
   <tr>
     <td><%=h pool.id %></td>
-    <td><%=h pool.pool_name %></td>
-    <td><%=h pool.pool_description %></td>
 	<td><%=h pool.tube_label %></td>
-	<td><%=h pool.comments %></td>
+    <td><%=h pool.pool_name %></td>
+	<td><%=h pool.source_conc_um %></td>
+    <td><%=h pool.pool_description %></td>
     <td><%= link_to 'Show', pool %></td>
   </tr>
 <% end %>

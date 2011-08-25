@@ -1,14 +1,14 @@
 <h3>Listing <%= @misc_oligos.size %> Miscellaneous Oligos for Pool</h3>
 
-<% form_tag(:action => :create) do %>
-
- <%= submit_tag 'Create Pool' %><br/>
- 
- <span class="notes"> Check oligos below, to include in pool</span>
- <%= check_box_tag("checkall", '1', false, {:onclick => "checkUncheckAll(this);"}) %>
- <span style="font-size:90%">Check/Uncheck All Oligos</span><br/><br/>
+<% form_for @misc_pool, :action => :create do |f| %>
+  <%=f.error_messages %>
+  <%= render :partial => 'pool_form', :locals => {:f => f} %>
+  
+  <span class="notes"> Check oligos below, to include in pool</span>&nbsp;&nbsp;&nbsp;<%= f.submit 'Create Pool' %><br/>
+  <%= check_box_tag("checkall", '1', @checked, {:onclick => "checkUncheckAll(this);"}) %>
+  <span style="font-size:90%">Check/Uncheck All Oligos</span><br/><br/>
 
 <%= render :partial => 'misc_oligos/list_oligos', :locals => {:misc_oligos => @misc_oligos,
-                                                              :checkbox => true} %>
+                                                              :checkbox => true, :checked => @checked} %>
 
 <% end %>

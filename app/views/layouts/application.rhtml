@@ -114,10 +114,8 @@
 	</div>
 
 	<div id="maincontent">
-	<% if flash[:notice] %>
-      <span style='color:green'> <%= flash[:notice]%></span><br />
-	<% end %>
-	
+	<div style='color:red'> <%= flash[:error]%></div>
+	<div style='color:green'> <%= flash[:notice]%></div>
 	<%= yield %>
 	</div>
 	

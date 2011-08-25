@@ -1,3 +1,23 @@
-<h3>Listing Oligos for Miscellaneous Pool: <%=h @misc_pool.pool_name %></h3>
+<h3>Details for Misc Pool: <%=h [@misc_pool.tube_label, @misc_pool.pool_name].join('/') %></h3>
+
+<table class="border">
+  <tr>
+	<th>Pool Name</th>
+	<th>#Oligos</th>
+	<th>Source Conc(um)</th>
+	<th>Room/Shelf/Box/Bin</th>
+	<th>Description</th>
+  </tr>
+  <tr>
+    <td><%=h @misc_pool.pool_name %></td>
+	<td><%=h @misc_pool.misc_oligos.size %></td>
+  	<td><%=h @misc_pool.source_conc_um %></td>
+	<td><% if @misc_pool.storage_location %><%=h @misc_pool.storage_location.location_string %><% end %></td>
+	<td><%=h @misc_pool.pool_description %></td>
+  </tr>
+</table>
 
 <%= render :partial => 'misc_oligos/list_oligos', :locals => {:misc_oligos => @misc_pool.misc_oligos} %>
+
+<br/>
+<%= link_to 'Edit', edit_misc_pool_path(@misc_pool) %>

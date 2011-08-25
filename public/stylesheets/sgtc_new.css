@@ -294,7 +294,7 @@ table {
 	border: 1px solid #b0aa91;
 	border-collapse: separate; /* collapse */
 	empty-cells: show;
-	margin-bottom: 3em;
+	margin-bottom: 1.5em;
 	/* table-layout: fixed; */
 	/* width: 95%; */
 }
@@ -321,7 +321,7 @@ table {
 .fieldWithErrors {
   padding: 2px;
   background-color: #990000;
-  display: table;
+  display: table-cell;
 }
 
 #errorExplanation {
