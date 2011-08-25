@@ -35,16 +35,10 @@
 	<ul>
 	<li> <%= link_to 'Home', {:controller=>'oligo_designs', :action=>'welcome'} %></li>
 	
-	<% if current_user && current_user.has_role?("stanford")%> 
-	  <li><%= link_to_function "Oligo Designs", toggle_div(:designssubmenu) %></li>	
-	  <div id="designssubmenu", style=<%= "display:none" if mdisplay[:designs] == 0 %>>
-	  	<ul>				 
-	    <% if current_user && current_user.has_role?("admin")%>
-		<li><%= link_to 'Load Oligo Designs', uploads_path(:filetype => 'Design') %></li>
-		<% end %>
-		<li><%= link_to 'Query Oligo Designs', {:controller=>'oligo_designs', :action=>'select_project'} %></li>
-		</ul>
-	  </div>
+	<% if current_user && current_user.has_role?("stanford")%>
+	  <% if current_user.has_role?("admin")%> 
+	  <li><%= link_to 'Load Oligo Designs', uploads_path(:filetype => 'Design') %></li>
+	  <% end %>
 
 	  <li><%= link_to_function "Oligo Synthesis", toggle_div(:synthesissubmenu) %></li>	
       <div id="synthesissubmenu", style=<%= "display:none" if mdisplay[:synthesis] == 0 %>>
@@ -52,7 +46,6 @@
 	     <li><%= link_to 'Create Synthesis Order', synth_order_path %></li>
 		 <li><%= link_to 'List Synthesis Orders', synth_files_path %></li>
 	     <li><%= link_to 'Load Synthesized Oligos', uploads_path(:filetype => 'Synthesis') %></li>
-		 <li><%= link_to 'Query Synthesized Oligos', inventoryquery_url %></li>
 		 </ul>
       </div>
 	    
@@ -66,16 +59,31 @@
 		 </ul>
       </div>
 	  
+	  <li><%= link_to_function "BioMek Runs", toggle_div(:biomeksubmenu) %></li>	
+      <div id="biomeksubmenu", style=<%= "display:none" if mdisplay[:biomek] == 0 %>>
+      	 <ul>
+	     <li><%= link_to 'Create BioMek Template', new_pool_plate_path %></li>
+		 <li><%= link_to 'List BioMek Templates', biomek_files_url %></li>
+		 <li><%= link_to 'List BioMek Runs', pool_plates_path %></li>
+		 <li><%= link_to 'Edit BioMek Runs', wells_edit_path %></li> 
+		 </ul>
+      </div>
+	  
       <li><%= link_to_function "Oligo Pools", toggle_div(:poolssubmenu) %></li>	
       <div id="poolssubmenu", style=<%= "display:none" if mdisplay[:pools] == 0 %>>
       	 <ul>
       	   <li><%= link_to 'Create Pool', new_pool_path  %></li>
-		   <li><%= link_to 'List BioMek Templates', biomek_files_path %></li>
-		   <li><%= link_to 'List BioMek Runs', pool_plates_path %></li>
 		   <li><%= link_to 'List Pools', pools_path %></li>
 		 </ul>
       </div>
-	
+	  
+	  <li><a href="#">Queries</a></li>	
+      	 <ul>
+      	   <li><%= link_to 'Std Oligos - Designs',      designquery_path  %></li>
+		   <li><%= link_to 'Std Oligos - Synthesized',  inventoryquery_url %></li>
+		   <li><%= link_to 'Misc Oligo Plates',         mplate_query_url %></li>
+		 </ul>
+	  
       <li> <%= link_to_function "Supporting Tables", toggle_div(:adminsubmenu) %></li>
       <div id="adminsubmenu", style=<%= "display:none" if mdisplay[:supporting] == 0 %>>
         <ul>
