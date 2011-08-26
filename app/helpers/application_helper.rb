@@ -1,9 +1,9 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   def menu_display
-    display_menu = Indicator::DISPLAY_MENU
-    display_menu.each do |menu_key, menu_val|
-      display_menu[menu_key.to_sym] = 1 if Indicator::MENU_MAPPING[menu_key.to_sym].include?(controller.controller_name)
+    display_menu = {}
+    Indicator::MENU_MAPPING.each do |menu_key, app_controllers|
+      display_menu[menu_key.to_sym] = (app_controllers.include?(controller.controller_name) ? 1 : 0)
     end
     return display_menu     
   end

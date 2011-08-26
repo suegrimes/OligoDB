@@ -22,11 +22,12 @@
 </div>
 
 <div id="container">
+	<% mdisplay = menu_display %>
+   
 	<div id="leftsidebar">
     <ul class="user_info">
-      <% mdisplay = menu_display %>
-      <% user_roles = (current_user ? current_user.roles.collect(&:name) : nil) %>
       <%if current_user%> <li><i> Logged in as: <%= current_user.login%> </i></li><%end%>	  
+	  <% user_roles = (current_user ? current_user.roles.collect(&:name) : nil) %>
 	  
 	  <%if Version::DESIGN_VERSION_NAMES %> 
 	    <li><i> Exome build: <%= Version::DESIGN_VERSION_NAMES %> </i></li>
