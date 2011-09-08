@@ -1,0 +1,18 @@
+<h3>Editing Misc Plate: <%=h @misc_plate.plate_number %></h3>
+
+<% form_for @misc_plate, :action => :update do |f| %>
+  <%=f.error_messages %>
+  
+  <table class="border">
+  <tr>
+  	<th style="text-align:right"><%=f.label :plate_description, 'Description' %></th>
+    <td><%=f.text_field(:plate_description) %></td>
+  </tr>
+  <tr>
+  	<th style="text-align:right"><%=f.label :synthesis_date %></th>
+    <td><%=f.text_field(:synthesis_date, :size => 8) %></td>
+  </tr>
+</table>
+  
+  <%=f.submit 'Update' %>
+<% end %>

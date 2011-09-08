@@ -18,7 +18,8 @@ class MiscOligo < ActiveRecord::Base
   has_many :misc_pool_oligos
   has_many :misc_pools, :through => :misc_pool_oligos
   
-  OLIGO_TYPE = {:V => 'Vector', :A => 'Adapter', :P => 'Primer', :S => 'Selector', :O => 'Other Oligo'}
+  OLIGO_TYPE = {:V => 'Vector', :A => 'Adapter', :P => 'Primer', :S => 'Selector', :Q => 'OS-Seq', 
+                :T => 'SV Tiling', :O => 'Other Oligo'}
   WELL_LETTER = %w{A B C D E F G H}
   
   def oligo_type_descr
