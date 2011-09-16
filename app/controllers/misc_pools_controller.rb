@@ -21,14 +21,15 @@ class MiscPoolsController < ApplicationController
   # GET /misc_pools.xml
   def index
     #sql_where_clause = define_conditions(params)
-    @misc_pools = MiscPool.find(:all) 
+    @misc_pools = MiscPool.find(:all, :order => :tube_label) 
     render :action => 'index'
   end
 
   # GET /misc_pools/1
   # GET /misc_pools/1.xml
   def show
-    @misc_pool = MiscPool.find(params[:id], :include => {:misc_pool_oligos => :misc_oligo})
+    @misc_pool = MiscPool.find(params[:id], :include => :misc_oligos,
+                               :order => "misc_oligos.plate_number, misc_oligos.well_order")
     render :action => 'show'
   end
 
