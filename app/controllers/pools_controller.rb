@@ -11,7 +11,7 @@ class PoolsController < ApplicationController
                                         left join subpools on pools.id = subpools.pool_id
                                         left join pool_wells on subpools.pool_well_id = pool_wells.id',
                              :select => "pools.*, storage_locations.room_nr, sum(pool_wells.nr_oligos) as 'nr_oligos'",
-                             :order => 'pools.project_id, pools.pool_name',
+                             :order => 'pools.tube_label',
                              :group => 'pools.id')
     #render :action => 'debug'
   end
