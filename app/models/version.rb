@@ -19,7 +19,8 @@
 #
 
 class Version < ActiveRecord::Base  
-  named_scope :curr_version, :conditions => {:version_for_synthesis => 'Y', :archive_flag => 'C'}, :order => 'id DESC'
+  named_scope :curr_version, :conditions => {:version_for_synthesis => 'Y', :exonome_or_partial => 'E', :archive_flag => 'C'},
+                                             :order => 'id DESC'
   belongs_to :vector
   
   before_save do |version|
