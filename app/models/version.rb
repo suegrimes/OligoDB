@@ -55,13 +55,10 @@ class Version < ActiveRecord::Base
   end
   
   def oligo_model
-    case archive_flag
-      when 'P'
-        model = 'PilotOligoDesign'
-      when 'A'
-        model = 'ArchiveOligoDesign'
-      else
-        model = 'OligoDesign'
+    model = case 
+      when exonome_or_partial == 'P' then 'PilotOligoDesign'
+      when archive_flag == 'A'       then 'ArchiveOligoDesign'
+      else 'OligoDesign'
       end
     return model
   end
