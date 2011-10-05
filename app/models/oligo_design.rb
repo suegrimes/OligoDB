@@ -66,7 +66,11 @@ class OligoDesign < ActiveRecord::Base
   #****************************************************************************************#
   
   def polarity
-    (sel_polarity == 'p' ? 'plus' : 'minus')
+    case sel_polarity
+      when 'p' then 'plus'
+      when 'm' then 'minus'
+      else nil
+    end
   end
   
   def vector
